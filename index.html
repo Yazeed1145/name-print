@@ -21,42 +21,74 @@ body{
 
 .card{
   background:#fff;
-  padding:50px;
-  border-radius:24px;
+  padding:50px 60px;
+  border-radius:28px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  width:420px;
+  max-width:90%;
 }
 
+/* اللوقو */
+.logo{
+  width:260px;
+  max-width:100%;
+  margin-bottom:25px;
+}
+
+/* العنوان */
 h1{
-  margin-bottom:30px;
+  margin:0 0 30px;
+  font-size:28px;
+  font-weight:900;
+  color:#1a1a1a;
 }
 
-a{
-  display:block;
-  margin:20px 0;
-  padding:20px;
+/* البوكسات */
+.boxes{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+}
+
+.box{
+  flex:1;
+  padding:20px 0;
   border-radius:18px;
   background:#000;
   color:#fff;
+  font-size:20px;
+  font-weight:900;
   text-decoration:none;
-  font-size:24px;
-  font-weight:bold;
-  transition:.2s;
+  transition:.25s;
 }
 
-a:hover{
+.box:hover{
   transform:scale(1.05);
+  background:#222;
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
   <div class="card">
+
+    <!-- اللوقو -->
+    <img src="logo.png" class="logo" alt="logo"
+      onerror="this.style.display='none'">
+
     <h1>اختر الخط</h1>
-    <a href="saudi.html">الخط السعودي</a>
-    <a href="first.html">الخط الأول</a>
+
+    <!-- البوكسات جنب بعض -->
+    <div class="boxes">
+      <a href="saudi.html" class="box">الخط السعودي</a>
+      <a href="first.html" class="box">الخط الأول</a>
+    </div>
+
   </div>
 </div>
+
 </body>
 </html>

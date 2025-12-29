@@ -15,28 +15,35 @@ body{
   align-items:center;
 }
 
+/* الكرت */
 .card{
   background:#fff;
-  width:800px;
+  width:900px;
   max-width:92%;
-  padding:40px;
-  border-radius:30px;
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  padding:50px 40px 60px;
+  border-radius:35px;
+  box-shadow:0 25px 50px rgba(0,0,0,.15);
   text-align:center;
 }
 
+/* اللوقو */
 .logo img{
-  width:460px;
+  width:480px;
   max-width:90%;
-  margin-bottom:25px;
+  margin-bottom:30px;
 }
 
-h2{margin:10px 0 30px}
+/* العنوان */
+h2{
+  font-size:28px;
+  margin-bottom:40px;
+}
 
+/* الخيارات */
 .options{
   display:flex;
   justify-content:center;
-  gap:30px;
+  gap:40px;
   flex-wrap:wrap;
 }
 
@@ -44,18 +51,40 @@ h2{margin:10px 0 30px}
   background:#000;
   color:#fff;
   width:260px;
-  padding:22px;
-  border-radius:20px;
-  font-size:22px;
+  padding:26px 20px;
+  border-radius:22px;
+  font-size:24px;
+  font-weight:900;
   text-decoration:none;
-  font-weight:800;
+  transition:.2s;
 }
-.option:hover{background:#222;}
+
+.option:hover{
+  background:#222;
+  transform:scale(1.05);
+}
 </style>
 </head>
 
 <body>
+
 <div class="card">
-  <div class="logo"><img src="logo.png"></div>
+
+  <!-- اللوقو -->
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
+  </div>
+
+  <!-- العنوان -->
   <h2>اختر الخط</h2>
-  <div class="op
+
+  <!-- الأزرار -->
+  <div class="options">
+    <a href="first.html" class="option">الخط الأول</a>
+    <a href="saudi.html" class="option">الخط السعودي</a>
+  </div>
+
+</div>
+
+</body>
+</html>

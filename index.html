@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Name Print</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+body{
+  font-family: Tajawal, Arial, sans-serif;
+  background:#f4f4f4;
+  padding:30px;
+}
+.box{
+  max-width:600px;
+  margin:auto;
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+}
+input{
+  width:100%;
+  padding:14px;
+  font-size:20px;
+  border-radius:14px;
+  border:1px solid #ccc;
+  margin-bottom:20px;
+}
+.name{
+  font-size:64px;
+  font-weight:900;
+  margin:30px 0;
+}
+button{
+  padding:12px 20px;
+  font-size:18px;
+  font-weight:800;
+  border-radius:14px;
+  border:0;
+  cursor:pointer;
+}
+.print{background:#000;color:#fff;}
+.clear{background:#eee;margin-left:10px;}
+
+@media print{
+  body{background:#fff;}
+  input, button{display:none;}
+  .box{box-shadow:none;}
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <input id="nameInput" placeholder="اكتب اسمك هنا" oninput="updateName()">
+
+  <div class="name" id="namePreview"></div>
+
+  <button class="print" onclick="window.print()">طباعة</button>
+  <button class="clear" onclick="clearName()">مسح</button>
+</div>
+
+<script>
+function updateName(){
+  document.getElementById("namePreview").textContent =
+    document.getElementById("nameInput").value;
+}
+function clearName(){
+  document.getElementById("nameInput").value="";
+  document.getElementById("namePreview").textContent="";
+}
+</script>
+</body>
+</html>

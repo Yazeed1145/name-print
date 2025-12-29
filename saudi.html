@@ -2,32 +2,30 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Name Print</title>
+<title>الخط السعودي</title>
 
 <style>
+@font-face {
+  font-family: "Saudi";
+  src: url("SaudiWeb-Regular.woff") format("woff");
+}
+
 body{
   margin:0;
-  font-family: Arial, sans-serif;
   background:#efe9d6;
+  font-family:Arial, sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   min-height:100vh;
 }
 
-.container{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
+.container{text-align:center;}
 
-.logo{
-  margin-bottom:30px;
-}
 .logo img{
-  width:420px; /* كبّر اللوقو */
+  width:420px;
   max-width:90%;
+  margin-bottom:30px;
 }
 
 .box{
@@ -37,17 +35,18 @@ body{
   padding:50px 40px;
   border-radius:30px;
   box-shadow:0 20px 40px rgba(0,0,0,.12);
-  text-align:center;
 }
 
-input{
+#nameInput{
   width:80%;
   max-width:520px;
   padding:20px;
-  font-size:22px;
+  font-size:38px;
   border-radius:20px;
   border:1px solid #ccc;
   outline:none;
+  text-align:center;
+  font-family:"Saudi";
   margin-bottom:35px;
 }
 
@@ -55,7 +54,6 @@ input{
   display:flex;
   justify-content:center;
   gap:20px;
-  flex-wrap:wrap;
 }
 
 .btn{
@@ -68,13 +66,9 @@ input{
   cursor:pointer;
 }
 
-.btn:hover{
-  background:#222;
-}
-
 .back-btn{
   display:inline-block;
-  margin-top:28px;
+  margin-top:30px;
   background:#000;
   color:#fff;
   padding:16px 44px;
@@ -85,34 +79,27 @@ input{
 }
 
 @media print{
-  .btn,.back-btn,input,.logo{display:none;}
+  .btn,.back-btn,.logo{display:none;}
   body{background:#fff;}
+  #nameInput{border:none;font-size:72px;}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-  <!-- اللوقو -->
   <div class="logo">
-    <img src="logo.png" alt="Logo">
+    <img src="logo.png">
   </div>
 
-  <!-- الكرت -->
   <div class="box">
-
-    <input type="text" id="nameInput" placeholder="اكتب اسمك">
-
+    <input id="nameInput" placeholder="اكتب اسمك">
     <div class="buttons">
       <button class="btn" onclick="window.print()">طباعة</button>
       <button class="btn" onclick="clearName()">مسح</button>
     </div>
-
-    <!-- زر الرجوع -->
     <a href="index.html" class="back-btn">رجوع</a>
-
   </div>
 
 </div>
@@ -122,6 +109,5 @@ function clearName(){
   document.getElementById("nameInput").value="";
 }
 </script>
-
 </body>
 </html>

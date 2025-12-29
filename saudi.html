@@ -1,168 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>طباعة الاسم – الخط السعودي</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الخط السعودي</title>
 
-<style>
-/* ===== الخط السعودي ===== */
-@font-face{
-  font-family:'Saudi';
-  src:url('./SaudiWeb-Regular.woff') format('woff');
-}
+  <style>
+    /* ✅ تحميل الخط السعودي */
+    @font-face{
+      font-family: "Saudi";
+      src: url("./SaudiWeb-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-/* ===== الصفحة ===== */
-body{
-  margin:0;
-  background:#efe9d6;
-  font-family:Arial, sans-serif;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    :root{
+      --bg:#efe9d6;
+      --card:#ffffff;
+      --shadow: 0 25px 50px rgba(0,0,0,.15);
+      --radius: 35px;
+    }
 
-.container{
-  text-align:center;
-}
+    *{ box-sizing:border-box; }
 
-/* ===== اللوقو ===== */
-.logo img{
-  width:800px;          /* كبر اللوقو */
-  max-width:100%;
-  margin-bottom:40px;
-}
+    body{
+      margin:0;
+      background: var(--bg);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: Arial, sans-serif;
+      padding: 40px 16px;
+    }
 
-/* ===== الكرت ===== */
-.box{
-  background:#fff;
-  width:900px;
-  max-width:92%;
-  padding:50px 40px 60px;
-  border-radius:35px;
-  box-shadow:0 25px 50px rgba(0,0,0,.15);
-}
+    .card{
+      background: var(--card);
+      width: 1100px;
+      max-width: 96%;
+      padding: 50px 40px 60px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align:center;
+    }
 
-/* ===== الإدخال ===== */
-#nameInput{
-  width:80%;
-  max-width:600px;
-  padding:22px;
-  font-size:40px;
-  border-radius:22px;
-  border:1px solid #ccc;
-  outline:none;
-  text-align:center;
-  font-family:'Saudi';
-}
+    /* الهيدر / اللوقو */
+    .logo{
+      margin-bottom: 30px;
+    }
+    .logo img{
+      width: 980px;   /* حجم الهيدر */
+      max-width: 100%;
+      height: auto;
+      display:block;
+      margin: 0 auto;
+    }
 
-/* ===== الاسم المعروض ===== */
-#printName{
-  margin-top:35px;
-  font-size:56px;
-  font-family:'Saudi';
-  font-weight:900;
-}
+    /* مربع الاسم */
+    .inputWrap{
+      margin: 30px auto 0;
+      width: 900px;
+      max-width: 92%;
+    }
 
-/* ===== الأزرار ===== */
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-top:35px;
-  flex-wrap:wrap;
-}
+    #nameInput{
+      width:100%;
+      padding: 26px 24px;
+      border-radius: 22px;
+      border: 1px solid #cfcfcf;
+      outline: none;
+      font-size: 44px;
+      text-align: center;
+      color:#333;
+      background:#fff;
 
-.btn{
-  background:#000;
-  color:#fff;
-  border:none;
-  padding:16px 42px;
-  font-size:20px;
-  border-radius:20px;
-  cursor:pointer;
-}
+      /* ✅ تطبيق الخط السعودي */
+      font-family: "Saudi", Arial, sans-serif;
+    }
 
-.btn:hover{
-  background:#222;
-}
+    /* الأزرار */
+    .btnRow{
+      margin-top: 26px;
+      display:flex;
+      justify-content:center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
 
-.back-btn{
-  display:inline-block;
-  margin-top:28px;
-  background:#000;
-  color:#fff;
-  padding:16px 46px;
-  border-radius:20px;
-  text-decoration:none;
-  font-size:20px;
-  font-weight:900;
-}
+    .btn{
+      background:#000;
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      padding: 18px 34px;
+      border-radius: 20px;
+      font-size: 22px;
+      font-weight: 800;
+      transition:.15s;
+      min-width: 160px;
+    }
+    .btn:hover{
+      background:#111;
+      transform: translateY(-1px);
+    }
 
-/* ===== الطباعة ===== */
-@media print{
-  body *{
-    visibility:hidden;
-  }
+    /* ✅ إعدادات الطباعة: اطبع الاسم فقط */
+    @media print{
+      body{ background:#fff !important; padding:0; }
+      .card{
+        box-shadow:none;
+        border-radius:0;
+        padding:0;
+        width:100%;
+        max-width:100%;
+      }
+      .logo,
+      .btnRow{
+        display:none !important;
+      }
+      .inputWrap{
+        width:100%;
+        max-width:100%;
+        margin:0;
+      }
+      #nameInput{
+        border:0 !important;
+        padding:0 !important;
+        font-size: 80px !important;
+        color:#000 !important;
+      }
 
-  #printName{
-    visibility:visible;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    font-size:110px;   /* حجم الاسم في الطباعة */
-  }
-
-  body{
-    background:#fff;
-  }
-}
-</style>
+      @page{ margin:0; }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="card">
 
-  <!-- اللوقو -->
-  <div class="logo">
-    <img src="logo.png" alt="Al-Bisht Al-Hasawi">
-  </div>
-
-  <!-- الكرت -->
-  <div class="box">
-
-    <input
-      id="nameInput"
-      placeholder="اكتب اسمك"
-      oninput="updateName()"
-    >
-
-    <div id="printName"></div>
-
-    <div class="buttons">
-      <button class="btn" onclick="window.print()">طباعة</button>
-      <button class="btn" onclick="clearName()">مسح</button>
+    <!-- الهيدر -->
+    <div class="logo">
+      <img src="logo.png" alt="logo">
     </div>
 
-    <a href="index.html" class="back-btn">رجوع</a>
+    <!-- الاسم -->
+    <div class="inputWrap">
+      <input
+        id="nameInput"
+        type="text"
+        placeholder="اكتب اسمك"
+        autocomplete="off"
+      />
+
+      <div class="btnRow">
+        <button class="btn" onclick="window.print()">طباعة</button>
+        <button class="btn" onclick="clearName()">مسح</button>
+        <button class="btn" onclick="goBack()">رجوع</button>
+      </div>
+    </div>
 
   </div>
 
-</div>
+  <script>
+    function clearName(){
+      const el = document.getElementById('nameInput');
+      el.value = '';
+      el.focus();
+    }
 
-<script>
-function updateName(){
-  document.getElementById("printName").textContent =
-    document.getElementById("nameInput").value;
-}
+    function goBack(){
+      window.location.href = 'index.html';
+    }
 
-function clearName(){
-  document.getElementById("nameInput").value = "";
-  document.getElementById("printName").textContent = "";
-}
-</script>
+    window.addEventListener('load', ()=>{
+      document.getElementById('nameInput').focus();
+    });
+  </script>
 
 </body>
 </html>

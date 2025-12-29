@@ -1,40 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Name Print</title>
+  <meta charset="UTF-8">
+  <title>Name Print</title>
 
-<!-- First Font (online, free) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+  <!-- خط أول (آمن ومضمون) -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
 
-<style>
-  /* ✅ Saudi Font (local) — سيشتغل لما ترفع ملف الخط داخل repo */
-  @font-face{
-    font-family: "SaudiFont";
-    src: url("./fonts/saudi-font.woff2") format("woff2"),
-         url("./fonts/saudi-font.ttf") format("truetype");
-    font-display: swap;
-  }
+  <style>
+    body{
+      font-family: Tajawal, Arial, sans-serif;
+      background:#f2f2f2;
+      padding:40px;
+    }
+    .box{
+      max-width:600px;
+      margin:auto;
+      background:#fff;
+      padding:30px;
+      border-radius:20px;
+      text-align:center;
+    }
+    input, select{
+      width:100%;
+      padding:14px;
+      font-size:18px;
+      margin-bottom:15px;
+      border-radius:12px;
+      border:1px solid #ccc;
+    }
+    .name{
+      font-size:60px;
+      font-weight:900;
+      margin:30px 0;
+    }
+    button{
+      padding:12px 20px;
+      font-size:18px;
+      font-weight:800;
+      border-radius:12px;
+      border:0;
+      cursor:pointer;
+      margin:5px;
+    }
+    .print{background:#000;color:#fff;}
+    .clear{background:#eee;}
 
-  body{
-    font-family: Tajawal, Arial, sans-serif;
-    background:#f4f4f4;
-    padding:30px;
+    @media print{
+      body{background:#fff;padding:0;}
+      input,select,button{display:none;}
+      .box{box-shadow:none;}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <input id="nameInput" placeholder="اكتب اسمك هنا">
+
+  <select id="fontSelect">
+    <option value="first">الخط الأول</option>
+    <option value="saudi">الخط السعودي</option>
+  </select>
+
+  <div class="name" id="namePreview"></div>
+
+  <button class="print" onclick="window.print()">طباعة</button>
+  <button class="clear" onclick="clearName()">مسح</button>
+</div>
+
+<script>
+  const nameInput = document.getElementById("nameInput");
+  const fontSelect = document.getElementById("fontSelect");
+  const namePreview = document.getElementById("namePreview");
+
+  nameInput.addEventListener("input", () => {
+    namePreview.textContent = nameInput.value;
+  });
+
+  fontSelect.addEventListener("change", () => {
+    if(fontSelect.value === "first"){
+      namePreview.style.fontFamily = "Tajawal, Arial, sans-serif";
+    }else{
+      // مؤقتًا نفس الخط – بنربطه بالخط السعودي لاحقًا
+      namePreview.style.fontFamily = "Tajawal, Arial, sans-serif";
+    }
+  });
+
+  function clearName(){
+    nameInput.value = "";
+    namePreview.textContent = "";
   }
-  .box{
-    max-width:720px;
-    margin:auto;
-    background:#fff;
-    padding:24px;
-    border-radius:20px;
-    text-align:center;
-  }
-  .row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom
+</script>
+
+</body>
+</html>

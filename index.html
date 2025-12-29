@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Name Print</title>
 
-  <!-- الخط الأول -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* الخط السعودي */
     @font-face{
       font-family: "SaudiFont";
       src: url("./SaudiWeb-Regular.woff") format("woff");
@@ -23,7 +21,6 @@
       color:#fff;
     }
 
-    /* منطقة التصميم */
     .stage{
       width:100%;
       max-width:1400px;
@@ -39,74 +36,94 @@
       align-items:center;
       padding-top:60px;
     }
-.logo{
-  width: 3000px;        /* 👈 كبرناه كثير */
-  max-width: 95%;     /* يمسك أغلب عرض الصفحة */
-  height: auto;
-  margin-bottom: 40px;
-  filter: drop-shadow(0 12px 35px rgba(0,0,0,.6));
-}
 
-
-    /* الأدوات */
-    .controls{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      justify-content:center;
-      margin-bottom:40px;
+    /* اللوقو فوق */
+    .logo{
+      width:750px;     /* كبّره كما تريد */
+      max-width:95%;
+      height:auto;
+      margin-bottom:28px;
+      filter: drop-shadow(0 12px 35px rgba(0,0,0,.6));
     }
 
-    input, select{
+    /* البانل (خطوة/نموذج) */
+    .panel{
+      width:min(950px, 94%);
+      background: rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      border-radius:18px;
+      padding:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin-bottom: 26px;
+    }
+
+    .panelTitle{
+      width:100%;
+      text-align:center;
+      font-weight:900;
+      font-size:22px;
+      margin-bottom:6px;
+    }
+
+    select, input{
       padding:14px 16px;
       font-size:20px;
       border-radius:14px;
       border:0;
-      min-width:240px;
+      min-width:260px;
       background:#fff;
       color:#000;
     }
 
     button{
-      padding:14px 22px;
+      padding:14px 20px;
       font-size:20px;
-      font-weight:800;
+      font-weight:900;
       border-radius:14px;
       border:0;
       cursor:pointer;
     }
 
-    .print{background:#fff;color:#000;}
-    .clear{background:#d9d9d9;color:#000;}
+    .primary{ background:#fff; color:#000; }
+    .secondary{ background:#d9d9d9; color:#000; }
 
-    /* الاسم */
+    /* الاسم على التصميم */
     .name{
       margin-top:auto;
       margin-bottom:70px;
-      font-size:clamp(42px, 6vw, 110px);
+      font-size:clamp(44px, 6vw, 120px);
       font-weight:900;
       text-align:center;
       text-shadow:0 4px 22px rgba(0,0,0,.55);
       white-space:pre-line;
+      padding: 0 18px;
     }
+
+    /* إخفاء/إظهار الخطوات */
+    .hidden{ display:none !important; }
 
     /* الطباعة */
     @page { size: A4 landscape; margin: 0; }
-
     @media print{
       body{background:#fff;}
-      .controls{display:none;}
+      .panel{display:none;}
       .stage{
-        width:200mm;
-        height:200mm;
+        width:297mm;
+        height:210mm;
         max-width:none;
         margin:0;
         border-radius:0;
         padding-top:35mm;
       }
       .logo{
-        width:120mm;      /* كبير بالطباعة */
-        margin-bottom:18mm;
+        width:120mm;
+        max-width:none;
+        margin-bottom:14mm;
       }
       .name{
         font-size:42mm;
@@ -117,29 +134,50 @@
 </head>
 
 <body>
-
   <div class="stage">
-    <!-- اللوقو -->
-    <img src="logo.png" class="logo" alt="logo">
 
-    <!-- الأدوات -->
-    <div class="controls">
-      <input id="nameInput" placeholder="اكتب الاسم">
+    <img src="logo.png" class="logo" alt="logo" />
+
+    <!-- خطوة 1: اختيار الخط -->
+    <div class="panel" id="stepFont">
+      <div class="panelTitle">اختر الخط</div>
       <select id="fontSelect">
+        <option value="" selected disabled>اختر الخط…</option>
         <option value="first">الخط الأول</option>
         <option value="saudi">الخط السعودي</option>
       </select>
-      <button class="print" onclick="window.print()">طباعة</button>
-      <button class="clear" onclick="clearName()">مسح</button>
+      <button class="primary" id="toNameBtn" disabled>التالي</button>
     </div>
 
-    <!-- الاسم -->
+    <!-- خطوة 2: كتابة الاسم -->
+    <div class="panel hidden" id="stepName">
+      <div class="panelTitle">اكتب اسمك</div>
+      <input id="nameInput" placeholder="اكتب الاسم هنا" />
+      <button class="primary" id="showBtn" disabled>عرض</button>
+      <button class="secondary" id="backBtn">رجوع</button>
+      <button class="secondary hidden" id="printBtn">طباعة</button>
+      <button class="secondary hidden" id="clearBtn">مسح</button>
+    </div>
+
+    <!-- الاسم يظهر هنا -->
     <div class="name" id="namePreview"></div>
+
   </div>
 
   <script>
-    const nameInput = document.getElementById("nameInput");
+    const stepFont = document.getElementById("stepFont");
+    const stepName = document.getElementById("stepName");
+
     const fontSelect = document.getElementById("fontSelect");
+    const toNameBtn  = document.getElementById("toNameBtn");
+
+    const nameInput  = document.getElementById("nameInput");
+    const showBtn    = document.getElementById("showBtn");
+    const backBtn    = document.getElementById("backBtn");
+
+    const printBtn   = document.getElementById("printBtn");
+    const clearBtn   = document.getElementById("clearBtn");
+
     const namePreview = document.getElementById("namePreview");
 
     function applyFont(){
@@ -149,21 +187,55 @@
           : "Tajawal, Arial, sans-serif";
     }
 
-    function updateName(){
-      namePreview.textContent = (nameInput.value || "").trim();
-    }
+    // تفعيل زر "التالي" بعد اختيار الخط
+    fontSelect.addEventListener("change", () => {
+      toNameBtn.disabled = !fontSelect.value;
+      applyFont();
+    });
 
-    function clearName(){
-      nameInput.value = "";
-      updateName();
+    // انتقال لخطوة الاسم
+    toNameBtn.addEventListener("click", () => {
+      stepFont.classList.add("hidden");
+      stepName.classList.remove("hidden");
       nameInput.focus();
-    }
+    });
 
-    nameInput.addEventListener("input", updateName);
-    fontSelect.addEventListener("change", applyFont);
+    // تفعيل زر عرض بعد ما يكتب شيء
+    nameInput.addEventListener("input", () => {
+      showBtn.disabled = !(nameInput.value || "").trim();
+    });
 
-    applyFont();
+    // عرض الاسم + إظهار طباعة/مسح
+    showBtn.addEventListener("click", () => {
+      namePreview.textContent = (nameInput.value || "").trim();
+      applyFont();
+      printBtn.classList.remove("hidden");
+      clearBtn.classList.remove("hidden");
+    });
+
+    // رجوع لاختيار الخط
+    backBtn.addEventListener("click", () => {
+      stepName.classList.add("hidden");
+      stepFont.classList.remove("hidden");
+      namePreview.textContent = "";
+      nameInput.value = "";
+      showBtn.disabled = true;
+      printBtn.classList.add("hidden");
+      clearBtn.classList.add("hidden");
+    });
+
+    // طباعة
+    printBtn.addEventListener("click", () => window.print());
+
+    // مسح
+    clearBtn.addEventListener("click", () => {
+      nameInput.value = "";
+      namePreview.textContent = "";
+      showBtn.disabled = true;
+      printBtn.classList.add("hidden");
+      clearBtn.classList.add("hidden");
+      nameInput.focus();
+    });
   </script>
-
 </body>
 </html>

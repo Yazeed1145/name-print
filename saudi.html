@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الخط السعودي</title>
+
+<style>
+@font-face{
+  font-family:"SaudiFont";
+  src:url("./SaudiWeb-Regular.woff") format("woff");
+  font-display:swap;
+}
+
+body{
+  margin:0;
+  background:#EFE7D8;
+  font-family:SaudiFont, Arial;
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo{
+  width:600px;
+  max-width:90%;
+  margin-bottom:40px;
+}
+
+input{
+  padding:20px;
+  font-size:26px;
+  border-radius:16px;
+  border:1px solid #ccc;
+  width:340px;
+}
+
+.name{
+  margin-top:40px;
+  font-size:80px;
+  text-align:center;
+  color:#2B1E12;
+}
+
+button{
+  margin-top:25px;
+  padding:14px 24px;
+  font-size:20px;
+  border-radius:14px;
+  border:0;
+  background:#000;
+  color:#fff;
+  cursor:pointer;
+}
+
+@media print{
+  input, button { display:none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <img src="logo.png" class="logo" onerror="this.style.display='none'">
+
+  <input placeholder="اكتب اسمك"
+    oninput="document.getElementById('n').textContent=this.value">
+
+  <div class="name" id="n"></div>
+
+  <button onclick="window.print()">طباعة</button>
+
+</div>
+</body>
+</html>

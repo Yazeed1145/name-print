@@ -6,35 +6,82 @@
 <title>اختيار الخط</title>
 
 <style>
-  body{margin:0;background:#EFE7D8;font-family:Arial,sans-serif}
-  .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-  .card{
-    background:#fff; padding:46px 56px; border-radius:28px;
-    text-align:center; box-shadow:0 15px 40px rgba(0,0,0,.15);
-    width:820px; max-width:95%;
-  }
-  .logo{width:520px;max-width:95%;margin:0 auto 22px;display:block}
-  h1{margin:0 0 26px;font-size:30px;font-weight:900}
-  .boxes{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-  .box{
-    width:320px; max-width:90vw;
-    padding:20px 0; border-radius:18px;
-    background:#000; color:#fff; font-size:22px; font-weight:900;
-    text-decoration:none; transition:.2s;
-  }
-  .box:hover{transform:scale(1.03);background:#222}
+body{
+  margin:0;
+  background:#EFE7D8;
+  font-family:Arial, sans-serif;
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.card{
+  background:#fff;
+  padding:50px 60px;
+  border-radius:28px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  width:820px;
+  max-width:95%;
+}
+
+.logo{
+  width:520px;
+  max-width:95%;
+  margin:0 auto 25px;
+  display:block;
+}
+
+h1{
+  margin:0 0 30px;
+  font-size:30px;
+  font-weight:900;
+}
+
+.boxes{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.box{
+  width:320px;
+  padding:22px 0;
+  border-radius:20px;
+  background:#000;
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  text-decoration:none;
+  transition:.25s;
+}
+
+.box:hover{
+  transform:scale(1.05);
+  background:#222;
+}
 </style>
 </head>
 
 <body>
 <div class="wrap">
   <div class="card">
-    <img src="logo.png" class="logo" alt="logo" onerror="this.style.display='none'">
+
+    <img src="logo.png" class="logo" onerror="this.style.display='none'">
+
     <h1>اختر الخط</h1>
+
     <div class="boxes">
-      <a class="box" href="first.html">الخط الأول</a>
-      <a class="box" href="saudi.html">الخط السعودي</a>
+      <a href="first.html" class="box">الخط الأول</a>
+      <a href="saudi.html" class="box">الخط السعودي</a>
     </div>
+
   </div>
 </div>
 </body>

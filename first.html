@@ -1,128 +1,161 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>طباعة الاسم – الخط الأول</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الخط الأول</title>
 
-<style>
-@font-face{
-  font-family:'AlAwwal';
-  src:url('./Al-AwwalWeb-Regular.woff') format('woff');
-}
+  <style>
+    @font-face{
+      font-family:"AlAwwal";
+      src:url("Al-AwwalWeb-Regular.woff") format("woff");
+      font-weight:normal;
+      font-style:normal;
+    }
 
-body{
-  margin:0;
-  background:#efe9d6;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial;
-}
+    body{
+      margin:0;
+      background:#efe9d6;
+      font-family:Arial, sans-serif;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px 0;
+    }
 
-.card{
-  background:#fff;
-  padding:50px;
-  border-radius:30px;
-  text-align:center;
-  box-shadow:0 25px 50px rgba(0,0,0,.15);
-  width:900px;
-  max-width:92%;
-}
+    .wrap{
+      width:1100px;
+      max-width:92%;
+      text-align:center;
+    }
 
-.logo img{
-  width:980px;
-  max-width:100%;
-  margin-bottom:30px;
-}
+    .logo img{
+      width:820px;   /* كبّر اللوقو هنا */
+      max-width:100%;
+      display:block;
+      margin:0 auto 22px;
+    }
 
-input{
-  width:80%;
-  font-size:40px;
-  padding:20px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  text-align:center;
-  font-family:'AlAwwal';
-}
+    .card{
+      background:#fff;
+      border-radius:50px;
+      box-shadow:0 25px 50px rgba(0,0,0,.15);
+      padding:55px 50px 60px;
+    }
 
-#namePreview{
-  margin-top:35px;
-  font-size:60px;
-  font-family:'AlAwwal';
-  font-weight:900;
-}
+    .input{
+      width:100%;
+      max-width:880px;
+      height:120px;
+      border-radius:26px;
+      border:1.5px solid #c9c9c9;
+      font-size:52px;
+      text-align:center;
+      outline:none;
+      font-family:"AlAwwal", Arial, sans-serif;
+      color:#222;
+    }
 
-.buttons{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-}
+    .actions{
+      margin-top:35px;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
 
-button,a{
-  background:#000;
-  color:#fff;
-  border:none;
-  padding:15px 40px;
-  font-size:20px;
-  border-radius:20px;
-  cursor:pointer;
-  text-decoration:none;
-}
+    .btn{
+      background:#000;
+      color:#fff;
+      border:none;
+      border-radius:22px;
+      padding:22px 55px;
+      font-size:28px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 12px 25px rgba(0,0,0,.18);
+      transition:.2s;
+    }
+    .btn:hover{ background:#222; transform:scale(1.03); }
 
-/* 🔥 الطباعة: الاسم فقط */
-@media print{
-  body *{
-    visibility:hidden;
-  }
+    /* منطقة الطباعة (الاسم فقط) */
+    .print-only{
+      display:none;
+      font-family:"AlAwwal", Arial, sans-serif;
+      font-size:120px;
+      text-align:center;
+      direction:rtl;
+      width:100%;
+    }
 
-  #namePreview{
-    visibility:visible;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    font-size:110px;
-    font-family:'AlAwwal';
-  }
+    @media print{
+      /* اخفاء كل شيء */
+      body *{
+        visibility:hidden !important;
+      }
 
-  body{
-    background:#fff;
-  }
-}
-</style>
+      /* اظهار الاسم فقط */
+      .print-only{
+        display:block !important;
+        visibility:visible !important;
+
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+      }
+
+      /* الغاء الهوامش الافتراضية (يقلل ظهور الهيدر/الفوتر) */
+      @page{
+        margin:0;
+      }
+    }
+
+    @media (max-width:600px){
+      .card{ padding:35px 25px 45px; border-radius:35px; }
+      .input{ height:95px; font-size:40px; }
+      .btn{ font-size:22px; padding:18px 40px; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
 
-<div class="card">
+    <div class="card">
+      <input id="nameInput" class="input" type="text" placeholder="اكتب اسمك" autocomplete="off"/>
 
-  <div class="logo">
-    <img src="logo.png">
+      <div class="actions">
+        <button class="btn" onclick="goBack()">رجوع</button>
+        <button class="btn" onclick="doPrint()">طباعة</button>
+      </div>
+    </div>
   </div>
 
-  <input
-    id="nameInput"
-    placeholder="اكتب اسمك"
-    oninput="updateName()"
-  >
+  <!-- هذا اللي ينطبع فقط -->
+  <div id="printText" class="print-only"></div>
 
-  <div id="namePreview"></div>
+  <script>
+    const nameInput = document.getElementById("nameInput");
+    const printText = document.getElementById("printText");
 
-  <div class="buttons">
-    <button onclick="window.print()">طباعة</button>
-    <a href="index.html">رجوع</a>
-  </div>
+    function goBack(){
+      window.location.href = "index.html";
+    }
 
-</div>
-
-<script>
-function updateName(){
-  document.getElementById("namePreview").textContent =
-    document.getElementById("nameInput").value;
-}
-</script>
-
+    function doPrint(){
+      const val = (nameInput.value || "").trim();
+      if(!val){
+        alert("اكتب الاسم أولاً");
+        return;
+      }
+      printText.textContent = val;
+      window.print();
+    }
+  </script>
 </body>
 </html>

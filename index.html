@@ -1,138 +1,197 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Name Print</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@600;800;900&display=swap" rel="stylesheet">
 
 <style>
-@font-face{
-  font-family: "SaudiFont";
-  src: url("./SaudiWeb-Regular.woff") format("woff");
-  font-display: swap;
-}
-
-body{
-  margin:0;
-  background:#0b0b0b;
-  font-family:Tajawal, Arial, sans-serif;
-  color:#fff;
-}
-
-/* المسرح */
-.stage{
-  width:100%;
-  max-width:1400px;
-  aspect-ratio:16/9;
-  margin:20px auto;
-  background:url("background.png") no-repeat center;
-  background-size:cover;
-  border-radius:16px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding-top:60px;
-}
-
-
-/* اللوقو */
-.logo{
-  width:2500px;
-  max-width:90%;
-  margin-bottom:40px;
-}
-
-/* البانل */
-.panel{
-  width:min(900px, 95%);
-  background:rgba(0,0,0,.45);
-  border-radius:20px;
-  padding:30px;
-  text-align:center;
-  margin-bottom:30px;
-}
-
-.panel h2{
-  margin-bottom:25px;
-  font-size:28px;
-}
-
-/* بوكسات الخط */
-.font-boxes{
-  display:flex;
-  gap:30px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.font-box{
-  width:260px;
-  height:120px;
-  border-radius:18px;
-  background:#fff;
-  color:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.font-box:hover{
-  transform:scale(1.05);
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-/* كتابة الاسم */
-.name-panel{
-  display:none;
-}
-
-input{
-  padding:16px;
-  font-size:22px;
-  border-radius:14px;
-  border:0;
-  width:320px;
-  margin-bottom:20px;
-}
-
-button{
-  padding:14px 22px;
-  font-size:20px;
-  font-weight:900;
-  border-radius:14px;
-  border:0;
-  cursor:pointer;
-}
-
-.print{background:#fff;color:#000;}
-.clear{background:#d9d9d9;color:#000;}
-
-/* الاسم */
-.name{
-  margin-top:auto;
-  margin-bottom:60px;
-  font-size:clamp(44px,6vw,120px);
-  font-weight:900;
-  text-align:center;
-  text-shadow:0 4px 22px rgba(0,0,0,.55);
-}
-
-@media print{
-  .panel{display:none;}
-  .stage{
-    width:297mm;
-    height:210mm;
-    margin:0;
-    border-radius:0;
+  @font-face{
+    font-family: "SaudiFont";
+    src: url("./SaudiWeb-Regular.woff") format("woff");
+    font-display: swap;
   }
-  .logo{width:120mm;}
-  .name{font-size:42mm;}
-}
+
+  body{
+    margin:0;
+    font-family:Tajawal, Arial, sans-serif;
+    background:#EFE7D8; /* ✅ لون البيج */
+  }
+
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:28px;
+  }
+
+  .top{
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
+  }
+
+  .logo{
+    width:650px;
+    max-width:95%;
+    height:auto;
+    background:#fff;
+    border-radius:12px;
+    padding:10px;
+  }
+
+  .card{
+    background:rgba(255,255,255,.7);
+    border:1px solid rgba(0,0,0,.08);
+    border-radius:18px;
+    padding:18px;
+    margin:14px 0;
+  }
+
+  .row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .box{
+    width:260px;
+    height:90px;
+    border-radius:16px;
+    background:#fff;
+    border:2px solid rgba(0,0,0,.12);
+    font-size:22px;
+    font-weight:900;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .box:hover{ transform: scale(1.03); }
+
+  input{
+    padding:14px 16px;
+    font-size:20px;
+    border-radius:14px;
+    border:1px solid rgba(0,0,0,.15);
+    min-width:320px;
+    background:#fff;
+  }
+
+  button{
+    padding:14px 18px;
+    font-size:18px;
+    font-weight:900;
+    border-radius:14px;
+    border:0;
+    cursor:pointer;
+    background:#111;
+    color:#fff;
+  }
+
+  .namePreview{
+    margin-top:18px;
+    text-align:center;
+    font-size:64px;
+    font-weight:900;
+    color:#2B1E12;
+  }
+
+  .hint{
+    font-size:14px;
+    opacity:.8;
+    text-align:center;
+    margin-top:8px;
+  }
+
+  .hidden{ display:none; }
+
+  @media print{
+    .card, .hint { display:none; }
+    body{ background:#fff; }
+  }
 </style>
-</hea
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="top">
+      <!-- لو ما عندك logo.png بتشوف مربع أبيض مكانه وهذا طبيعي -->
+      <img class="logo" src="logo.png" alt="logo"
+        onerror="this.style.display='none'; document.getElementById('logoMissing').classList.remove('hidden');">
+      <div id="logoMissing" class="card hidden" style="text-align:center;">
+        ⚠️ logo.png غير موجود أو اسمه مختلف
+      </div>
+    </div>
+
+    <!-- خطوة اختيار الخط -->
+    <div class="card" id="step1">
+      <div style="text-align:center; font-weight:900; font-size:22px; margin-bottom:12px;">اختر الخط</div>
+      <div class="row">
+        <div class="box" onclick="chooseFont('first')">الخط الأول</div>
+        <div class="box" onclick="chooseFont('saudi')">الخط السعودي</div>
+      </div>
+      <div class="hint">إذا الصفحة ظهرت لك بهذا الشكل، إذًا GitHub Pages شغال ✅</div>
+    </div>
+
+    <!-- خطوة كتابة الاسم -->
+    <div class="card hidden" id="step2">
+      <div style="text-align:center; font-weight:900; font-size:22px; margin-bottom:12px;">اكتب اسمك</div>
+      <div class="row">
+        <input id="nameInput" placeholder="اكتب الاسم هنا">
+        <button onclick="window.print()">طباعة</button>
+        <button onclick="clearAll()">مسح</button>
+      </div>
+
+      <div class="namePreview" id="preview"></div>
+
+      <div class="hint" id="fontHint"></div>
+      <div class="hint" id="woffHint"></div>
+    </div>
+
+  </div>
+
+<script>
+  let selected = "first";
+
+  function chooseFont(type){
+    selected = type;
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+
+    // تنبيه سريع إذا الخط السعودي ما انقرأ
+    if(type === "saudi"){
+      document.getElementById('fontHint').textContent = "تم اختيار: الخط السعودي";
+      // محاولة بسيطة للتأكد أن ملف woff موجود: لو غير موجود غالبًا بيظهر نفس خط Tajawal
+      document.getElementById('woffHint').textContent = "ملاحظة: إذا ما تغيّر شكل الخط، تأكد أن SaudiWeb-Regular.woff موجود بنفس الاسم.";
+    } else {
+      document.getElementById('fontHint').textContent = "تم اختيار: الخط الأول";
+      document.getElementById('woffHint').textContent = "";
+    }
+
+    document.getElementById('nameInput').focus();
+  }
+
+  const inp = document.getElementById('nameInput');
+  const prev = document.getElementById('preview');
+
+  inp.addEventListener('input', () => {
+    prev.textContent = (inp.value || "").trim();
+    prev.style.fontFamily = (selected === "saudi")
+      ? "SaudiFont, Tajawal, Arial, sans-serif"
+      : "Tajawal, Arial, sans-serif";
+  });
+
+  function clearAll(){
+    inp.value = "";
+    prev.textContent = "";
+    inp.focus();
+  }
+</script>
+
+</body>
+</html>

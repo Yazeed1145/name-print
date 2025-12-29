@@ -3,33 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Name + Logo + Two Fonts</title>
+  <title>Name Print</title>
 
-  <!-- الخط الأول (من Google) -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* الخط السعودي (من ملفك داخل الريبو) */
     @font-face{
       font-family: "SaudiFont";
       src: url("./SaudiWeb-Regular.woff") format("woff");
       font-display: swap;
     }
 
+    :root{
+      --bg: url("background.png");   /* <-- غيّر الاسم هنا لو الخلفية اسمها مختلف */
+      --logo: "logo.png";            /* <-- غيّر الاسم هنا لو اللوقو اسمه مختلف */
+    }
+
     body{
       margin:0;
-      background:#111;
+      background:#0b0b0b;
       font-family: Tajawal, Arial, sans-serif;
     }
 
-    /* أدوات التحكم (لا تُطبع) */
+    /* شريط التحكم */
     .controls{
-      padding:16px;
+      padding:14px;
       text-align:center;
       background:#0f0f0f;
       position: sticky;
       top: 0;
       z-index: 999;
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
     input, select{
       padding:12px 14px;
@@ -39,6 +43,7 @@
       outline:none;
       margin:6px;
       min-width:240px;
+      background:#fff;
     }
     button{
       padding:12px 16px;
@@ -52,49 +57,64 @@
     .print{background:#fff;color:#000;}
     .clear{background:#d9d9d9;color:#000;}
 
-    /* صفحة التصميم */
-    .page{
-      width:297mm;
-      height:210mm;
-      margin:0 auto;
-      position:relative;
-      background:url("background.png") no-repeat center;
-      background-size:cover;
-      overflow:hidden;
+    /* الـ Canvas/Design */
+    .stage{
+      width: 100%;
+      max-width: 1400px;
+      aspect-ratio: 16 / 9;  /* يطلع شكل قريب من تصميمك */
+      margin: 18px auto;
+      position: relative;
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
+      border-radius: 14px;
+      overflow: hidden;
     }
 
-    /* اللوقو فوق */
+    /* اللوقو فوق يمين */
     .logo{
       position:absolute;
-      top:18mm;
-      right:22mm;
-      width:140px;
+      top: 4%;
+      right: 4%;
+      width: 280px;         /* كبرته */
+      max-width: 38%;
       height:auto;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
     }
 
     /* الاسم */
     .name{
       position:absolute;
-      right:35mm;
-      bottom:55mm;
-      font-size:72px;
-      font-weight:900;
-      color:#fff;
+      right: 6%;
+      bottom: 14%;
+      width: 88%;
       text-align:right;
-      line-height:1.15;
-      letter-spacing: 0.5px;
-      text-shadow: 0 2px 14px rgba(0,0,0,.35);
-      white-space: pre-line;
+      font-size: clamp(34px, 5.2vw, 86px); /* يتكيّف مع حجم الشاشة */
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 3px 18px rgba(0,0,0,.45);
     }
 
-    /* الطباعة */
+    /* الطباعة: خليها A4 أفقي */
+    @page { size: A4 landscape; margin: 0; }
+
     @media print{
       body{background:#fff;}
       .controls{display:none;}
-      .page{
-        margin:0;
-        width:297mm;
-        height:210mm;
+      .stage{
+        width: 297mm;
+        height: 210mm;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+      }
+      .logo{ width: 70mm; }
+      .name{
+        font-size: 40mm;
+        right: 18mm;
+        bottom: 22mm;
+        width: calc(100% - 36mm);
       }
     }
   </style>
@@ -102,21 +122,17 @@
 
 <body>
   <div class="controls">
-    <input id="nameInput" placeholder="اكتب الاسم هنا" />
-
+    <input id="nameInput" placeholder="اكتب الاسم" />
     <select id="fontSelect">
       <option value="first" selected>الخط الأول</option>
       <option value="saudi">الخط السعودي</option>
     </select>
-
     <button class="print" onclick="window.print()">طباعة</button>
     <button class="clear" onclick="clearName()">مسح</button>
   </div>
 
-  <div class="page">
-    <!-- إذا اسم اللوقو مختلف غيّره هنا -->
-    <img class="logo" src="logo.png" alt="logo" />
-
+  <div class="stage">
+    <img class="logo" src="logo.png" alt="logo">
     <div class="name" id="namePreview"></div>
   </div>
 
@@ -126,11 +142,10 @@
     const namePreview = document.getElementById("namePreview");
 
     function applyFont(){
-      if(fontSelect.value === "saudi"){
-        namePreview.style.fontFamily = "SaudiFont, Tajawal, Arial, sans-serif";
-      } else {
-        namePreview.style.fontFamily = "Tajawal, Arial, sans-serif";
-      }
+      namePreview.style.fontFamily =
+        (fontSelect.value === "saudi")
+          ? "SaudiFont, Tajawal, Arial, sans-serif"
+          : "Tajawal, Arial, sans-serif";
     }
 
     function updateName(){
@@ -146,7 +161,6 @@
     nameInput.addEventListener("input", updateName);
     fontSelect.addEventListener("change", applyFont);
 
-    // تشغيل أولي
     applyFont();
     updateName();
   </script>

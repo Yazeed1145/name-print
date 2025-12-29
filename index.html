@@ -32,47 +32,46 @@
       position:relative;
       background:url("background.png") no-repeat center;
       background-size:cover;
-      border-radius:14px;
+      border-radius:16px;
       overflow:hidden;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:flex-start;
-      padding-top:40px;
+      padding-top:60px;
     }
 
-    /* اللوقو فوق */
+    /* اللوقو الكبير */
     .logo{
-      width:320px;
-      max-width:60%;
-      margin-bottom:25px;
-      filter: drop-shadow(0 6px 18px rgba(0,0,0,.4));
+      width:520px;          /* 🔥 حجم كبير */
+      max-width:85%;        /* يتكيّف مع الشاشات */
+      margin-bottom:40px;   /* مسافة تحت اللوقو */
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,.45));
     }
 
-    /* أدوات التحكم تحت اللوقو */
+    /* الأدوات */
     .controls{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:14px;
       justify-content:center;
-      margin-bottom:30px;
+      margin-bottom:40px;
     }
 
     input, select{
-      padding:12px 14px;
-      font-size:18px;
-      border-radius:12px;
+      padding:14px 16px;
+      font-size:20px;
+      border-radius:14px;
       border:0;
-      min-width:220px;
+      min-width:240px;
       background:#fff;
       color:#000;
     }
 
     button{
-      padding:12px 18px;
-      font-size:18px;
+      padding:14px 22px;
+      font-size:20px;
       font-weight:800;
-      border-radius:12px;
+      border-radius:14px;
       border:0;
       cursor:pointer;
     }
@@ -83,11 +82,11 @@
     /* الاسم */
     .name{
       margin-top:auto;
-      margin-bottom:50px;
-      font-size:clamp(36px, 5vw, 90px);
+      margin-bottom:70px;
+      font-size:clamp(42px, 6vw, 110px);
       font-weight:900;
       text-align:center;
-      text-shadow:0 3px 18px rgba(0,0,0,.45);
+      text-shadow:0 4px 22px rgba(0,0,0,.55);
       white-space:pre-line;
     }
 
@@ -106,12 +105,12 @@
         padding-top:35mm;
       }
       .logo{
-        width:90mm;
-        margin-bottom:15mm;
+        width:120mm;      /* كبير بالطباعة */
+        margin-bottom:18mm;
       }
       .name{
-        font-size:38mm;
-        margin-bottom:25mm;
+        font-size:42mm;
+        margin-bottom:30mm;
       }
     }
   </style>
@@ -123,7 +122,7 @@
     <!-- اللوقو -->
     <img src="logo.png" class="logo" alt="logo">
 
-    <!-- الأدوات تحت اللوقو -->
+    <!-- الأدوات -->
     <div class="controls">
       <input id="nameInput" placeholder="اكتب الاسم">
       <select id="fontSelect">

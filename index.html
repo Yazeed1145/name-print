@@ -6,7 +6,7 @@
 <title>اختيار الخط</title>
 
 <style>
-/* الخط السعودي من ملفك */
+/* الخط السعودي */
 @font-face{
   font-family:"Saudi";
   src:url("SaudiWeb-Regular.woff") format("woff");
@@ -15,7 +15,7 @@
   font-display:swap;
 }
 
-/* الخط الأول من ملفك */
+/* الخط الأول */
 @font-face{
   font-family:"AlAwwal";
   src:url("Al-AwwalWeb-Regular.woff") format("woff");
@@ -24,37 +24,48 @@
   font-display:swap;
 }
 
+/* اللون الموحد */
+:root{
+  --main:#2596be;
+}
+
+/* الصفحة */
 body{
   margin:0;
-  background:#efe9d6;
+  background:var(--main);
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
+/* الكرت (نفس لون الصفحة) */
 .card{
-  background:#fff;
+  background:var(--main);
   width:900px;
   max-width:92%;
   padding:50px 40px 60px;
   border-radius:35px;
-  box-shadow:0 25px 50px rgba(0,0,0,.15);
+  box-shadow:0 20px 45px rgba(0,0,0,.25); /* ظل فقط للتمييز */
   text-align:center;
 }
 
+/* اللوقو */
 .logo img{
   width:800px;
   max-width:100%;
   margin-bottom:45px;
 }
 
+/* العنوان */
 h2{
   font-family:"Saudi", serif;
   font-size:28px;
   margin:0 0 40px;
+  color:#fff; /* أبيض */
 }
 
+/* الأزرار */
 .options{
   display:flex;
   justify-content:center;
@@ -77,11 +88,11 @@ h2{
 }
 
 .option:hover{
-  background:#222;
+  background:#111;
   transform:scale(1.03);
 }
 
-/* ✅ زر الخط السعودي (زي الصورة) */
+/* زر الخط السعودي */
 .option-saudi{
   font-family:"Saudi", serif;
   font-size:38px;
@@ -89,7 +100,7 @@ h2{
   line-height:1.2;
 }
 
-/* ✅ زر الخط الأول */
+/* زر الخط الأول */
 .option-first{
   font-family:"AlAwwal", Arial, sans-serif;
   font-size:38px;
@@ -110,10 +121,7 @@ h2{
   <h2>اختر الخط</h2>
 
   <div class="options">
-    <!-- ✅ حسب الصورة: السعودي يسار -->
     <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
-
-    <!-- ✅ حسب الصورة: الأول يمين -->
     <a href="first.html" class="option option-first">الخط الأول</a>
   </div>
 

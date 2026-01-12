@@ -2,25 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>اختيار الخط</title>
 
-<!-- الخط السعودي الرسمي -->
+<!-- الخط السعودي -->
 <link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
 
 <style>
-/* ===============================
-   خط First (عدّل المسار فقط)
-================================ */
+/* ✅ الخط الأول (AlAwwal) - نفس اللي عندك في صفحة first.html */
 @font-face{
-  font-family:"First";
-  src:url("FIRST-FONT.woff2") format("woff2");
-  font-weight:400;
+  font-family:"AlAwwal";
+  src:url("Al-AwwalWeb-Regular.woff") format("woff");
+  font-weight:normal;
   font-style:normal;
+  font-display:swap;
 }
 
-/* ===============================
-   إعدادات الصفحة
-================================ */
 body{
   margin:0;
   background:#efe9d6;
@@ -30,7 +27,6 @@ body{
   align-items:center;
 }
 
-/* الكرت */
 .card{
   background:#fff;
   width:900px;
@@ -41,23 +37,18 @@ body{
   text-align:center;
 }
 
-/* اللوقو */
 .logo img{
   width:800px;
   max-width:100%;
   margin-bottom:45px;
 }
 
-/* العنوان */
 h2{
   font-family:"Saudi", serif;
   font-size:28px;
-  margin-bottom:40px;
+  margin:0 0 40px;
 }
 
-/* ===============================
-   الأزرار
-================================ */
 .options{
   display:flex;
   justify-content:center;
@@ -65,12 +56,12 @@ h2{
   flex-wrap:wrap;
 }
 
-/* شكل الزر فقط (بدون لمس النص) */
+/* شكل الزر ثابت */
 .option{
   background:#000;
   color:#fff;
-  width:320px;
-  padding:28px 20px;
+  width:360px;
+  padding:26px 20px;
   border-radius:24px;
   text-decoration:none;
   transition:.2s;
@@ -78,29 +69,25 @@ h2{
   align-items:center;
   justify-content:center;
 }
+
 .option:hover{
   background:#222;
   transform:scale(1.03);
 }
 
-/* ===============================
-   ستايل كل خط (هنا الفرق)
-================================ */
-
-/* زر الخط السعودي */
-.option-saudi{
-  font-family:"Saudi", serif;
-  font-size:30px;
-  font-weight:400;
-  line-height:1.35;
+/* ✅ كل زر بخطه الحقيقي */
+.option-first{
+  font-family:"AlAwwal", Arial, sans-serif;
+  font-size:38px;
+  font-weight:normal;
+  line-height:1.1;
 }
 
-/* زر الخط الأول */
-.option-first{
-  font-family:"First", sans-serif;
-  font-size:30px;
+.option-saudi{
+  font-family:"Saudi", serif;
+  font-size:34px;
   font-weight:400;
-  line-height:1.1;
+  line-height:1.35;
 }
 </style>
 </head>
@@ -108,21 +95,16 @@ h2{
 <body>
 
 <div class="card">
-
-  <!-- اللوقو -->
   <div class="logo">
     <img src="logo.png" alt="Logo">
   </div>
 
-  <!-- العنوان -->
   <h2>اختر الخط</h2>
 
-  <!-- الأزرار -->
   <div class="options">
-    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
     <a href="first.html" class="option option-first">الخط الأول</a>
+    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
   </div>
-
 </div>
 
 </body>

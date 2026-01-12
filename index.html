@@ -4,11 +4,30 @@
 <meta charset="UTF-8">
 <title>اختيار الخط</title>
 
+<!-- Saudi Font (من موقع وزارة الثقافة) -->
+<link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
+
 <style>
+/* First Font (عدّل المسار حسب ملفاتك) */
+@font-face{
+  font-family: "First";
+  src: url("FIRST-FONT.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* توزيع الخطوط حسب اللغة */
+:lang(ar){
+  font-family: "Saudi", serif;
+}
+:lang(en){
+  font-family: "First", sans-serif;
+}
+
 body{
   margin:0;
   background:#efe9d6;
-  font-family:Arial, sans-serif;
+  font-family: Arial, sans-serif; /* احتياطي */
   min-height:100vh;
   display:flex;
   justify-content:center;
@@ -27,7 +46,6 @@ body{
 }
 
 /* اللوقو */
-  
 .logo img{
   width:800px;
   max-width:100%;
@@ -58,11 +76,24 @@ h2{
   font-weight:900;
   text-decoration:none;
   transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .option:hover{
   background:#222;
   transform:scale(1.05);
+}
+
+/* تخصيص الخط لكل زر */
+.option-first{
+  font-family: "First", sans-serif;
+  direction:ltr;
+}
+.option-saudi{
+  font-family: "Saudi", serif;
+  direction:rtl;
 }
 </style>
 </head>
@@ -76,13 +107,16 @@ h2{
     <img src="logo.png" alt="Logo">
   </div>
 
-  <!-- العنوان -->
-  <h2>اختر الخط</h2>
+  <!-- العنوان (عربي = Saudi) -->
+  <h2 lang="ar">اختر الخط</h2>
 
   <!-- الأزرار -->
   <div class="options">
-    <a href="first.html" class="option">الخط الأول</a>
-    <a href="saudi.html" class="option">الخط السعودي</a>
+    <!-- زر الخط الأول (إنجليزي بخط First) -->
+    <a href="first.html" class="option option-first" lang="en">First Font</a>
+
+    <!-- زر الخط السعودي (عربي بخط Saudi) -->
+    <a href="saudi.html" class="option option-saudi" lang="ar">الخط السعودي</a>
   </div>
 
 </div>

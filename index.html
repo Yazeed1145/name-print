@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>اختيار الخط</title>
 
-<!-- الخط السعودي -->
+<!-- Saudi Font -->
 <link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
 
 <style>
-/* خط First (عدّل المسار حسب ملفك) */
+/* First Font (عدّل المسار حسب ملفك) */
 @font-face{
   font-family:"First";
   src:url("FIRST-FONT.woff2") format("woff2");
@@ -25,7 +26,6 @@ body{
   align-items:center;
 }
 
-/* الكرت */
 .card{
   background:#fff;
   width:900px;
@@ -36,21 +36,18 @@ body{
   text-align:center;
 }
 
-/* اللوقو */
 .logo img{
   width:800px;
   max-width:100%;
   margin-bottom:45px;
 }
 
-/* العنوان */
 h2{
   font-family:"Saudi", serif;
   font-size:28px;
-  margin-bottom:40px;
+  margin:0 0 40px;
 }
 
-/* الخيارات */
 .options{
   display:flex;
   justify-content:center;
@@ -58,65 +55,56 @@ h2{
   flex-wrap:wrap;
 }
 
-/* شكل الزر */
+/* شكل الزر ثابت */
 .option{
   background:#000;
   color:#fff;
-  width:280px;
+  width:320px;
   padding:28px 20px;
-  border-radius:22px;
+  border-radius:24px;
   text-decoration:none;
   transition:.2s;
-
-  display:inline-flex;
+  display:flex;
   align-items:center;
   justify-content:center;
-
-  /* ✅ خلي الزر له إعدادات افتراضية (عشان ما يختفي) */
-  font-size:26px;
-  font-weight:700;
-  line-height:1.2;
 }
 
 .option:hover{
   background:#222;
-  transform:scale(1.05);
+  transform:scale(1.03);
 }
 
-/* الخط السعودي (شكله الطبيعي) */
-.option-saudi{
-  font-family:"Saudi", serif;
-  font-size:26px;
-  font-weight:400;
-  line-height:1.35;
-}
-
-/* الخط الأول (شكله الطبيعي) */
+/* ✅ كل زر يظهر “ستايل الخط” نفسه */
 .option-first{
   font-family:"First", sans-serif;
-  font-size:28px;
+  font-size:30px;
   font-weight:400;
   line-height:1.1;
+}
+
+.option-saudi{
+  font-family:"Saudi", serif;
+  font-size:28px;
+  font-weight:400;
+  line-height:1.35;
 }
 </style>
 </head>
 
 <body>
+  <div class="card">
 
-<div class="card">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
 
-  <div class="logo">
-    <img src="logo.png" alt="Logo">
+    <h2>اختر الخط</h2>
+
+    <div class="options">
+      <a class="option option-first" href="first.html">الخط الأول</a>
+      <a class="option option-saudi" href="saudi.html">الخط السعودي</a>
+    </div>
+
   </div>
-
-  <h2>اختر الخط</h2>
-
-  <div class="options">
-    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
-    <a href="first.html" class="option option-first">الخط الأول</a>
-  </div>
-
-</div>
-
 </body>
 </html>

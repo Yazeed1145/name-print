@@ -16,32 +16,39 @@
     }
 
     :root{
-      --bg:#efe9d6;
-      --card:#ffffff;
-      --shadow: 0 25px 50px rgba(0,0,0,.15);
+      --bg:#EAE4CD;           /* اللون الموحد */
+      --text:#222;
+      --border:rgba(0,0,0,.25);
       --radius: 35px;
     }
 
     *{ box-sizing:border-box; }
 
-    body{
+    html, body{
+      width:100%;
+      height:100%;
       margin:0;
+      padding:0;
       background: var(--bg);
+      font-family: Arial, sans-serif;
+    }
+
+    body{
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-family: Arial, sans-serif;
       padding: 40px 16px;
+      color:var(--text);
     }
 
+    /* ✅ الكرت نفس لون الخلفية بالضبط (بدون أبيض وبدون ظل) */
     .card{
-      background: var(--card);
+      background: var(--bg);
       width: 1100px;
       max-width: 96%;
       padding: 50px 40px 60px;
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
       text-align:center;
     }
 
@@ -50,7 +57,7 @@
       margin-bottom: 30px;
     }
     .logo img{
-      width: 980px;   /* حجم الهيدر */
+      width: 980px;
       max-width: 100%;
       height: auto;
       display:block;
@@ -68,15 +75,21 @@
       width:100%;
       padding: 26px 24px;
       border-radius: 22px;
-      border: 1px solid #cfcfcf;
+      border: 2px solid var(--border);
       outline: none;
       font-size: 44px;
       text-align: center;
-      color:#333;
-      background:#fff;
+      color:var(--text);
+
+      /* ✅ شفاف عشان ما يطلع أبيض */
+      background: transparent;
 
       /* ✅ تطبيق الخط السعودي */
       font-family: "Saudi", Arial, sans-serif;
+    }
+
+    #nameInput::placeholder{
+      color:#555;
     }
 
     /* الأزرار */
@@ -108,27 +121,31 @@
     /* ✅ إعدادات الطباعة: اطبع الاسم فقط */
     @media print{
       body{ background:#fff !important; padding:0; }
+
       .card{
-        box-shadow:none;
         border-radius:0;
         padding:0;
         width:100%;
         max-width:100%;
       }
+
       .logo,
       .btnRow{
         display:none !important;
       }
+
       .inputWrap{
         width:100%;
         max-width:100%;
         margin:0;
       }
+
       #nameInput{
         border:0 !important;
         padding:0 !important;
         font-size: 80px !important;
         color:#000 !important;
+        background: transparent !important;
       }
 
       @page{ margin:0; }
@@ -139,7 +156,6 @@
 <body>
 
   <div class="card">
-
     <!-- الهيدر -->
     <div class="logo">
       <img src="logo.png" alt="logo">
@@ -154,22 +170,14 @@
         autocomplete="off"
       />
 
-     <div 
-       class="btnRow">
-  <button class="btn" onclick="goBack()">رجوع</button>
-  <button class="btn" onclick="window.print()">طباعة</button>
-</div>
+      <div class="btnRow">
+        <button class="btn" onclick="goBack()">رجوع</button>
+        <button class="btn" onclick="window.print()">طباعة</button>
+      </div>
     </div>
-
   </div>
 
   <script>
-    function clearName(){
-      const el = document.getElementById('nameInput');
-      el.value = '';
-      el.focus();
-    }
-
     function goBack(){
       window.location.href = 'index.html';
     }

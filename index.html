@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <title>اختيار الخط</title>
 
-<!-- Saudi Font -->
+<!-- الخط السعودي -->
 <link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
 
 <style>
-/* First Font (عدّل المسار حسب ملفاتك) */
-@font-face{
+/* خط First (عدّل المسار حسب ملفك) */
+@font-face {
   font-family: "First";
   src: url("FIRST-FONT.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
-/* =============== Base =============== */
+/* ===== الصفحة ===== */
 body{
   margin:0;
   background:#efe9d6;
@@ -26,7 +26,7 @@ body{
   align-items:center;
 }
 
-/* الكرت */
+/* ===== الكرت ===== */
 .card{
   background:#fff;
   width:900px;
@@ -37,21 +37,21 @@ body{
   text-align:center;
 }
 
-/* اللوقو */
+/* ===== اللوقو ===== */
 .logo img{
   width:800px;
   max-width:100%;
   margin-bottom:45px;
 }
 
-/* العنوان (Saudi) */
+/* ===== العنوان ===== */
 h2{
-  font-family:"Saudi", serif;
+  font-family:"Saudi";
   font-size:28px;
   margin-bottom:40px;
 }
 
-/* الخيارات */
+/* ===== الأزرار ===== */
 .options{
   display:flex;
   justify-content:center;
@@ -59,38 +59,47 @@ h2{
   flex-wrap:wrap;
 }
 
+/* شكل الزر فقط (بدون فرض ستايل خط) */
 .option{
   background:#000;
   color:#fff;
-  width:260px;
-  padding:26px 20px;
+  width:280px;
+  padding:28px 20px;
   border-radius:22px;
-  font-size:24px;
-  font-weight:900;
   text-decoration:none;
   transition:.2s;
-  display:inline-flex;
+
+  display:flex;
   align-items:center;
   justify-content:center;
-  line-height:1;
+
+  /* لا تقتل شكل الخط */
+  font-size:unset;
+  font-weight:unset;
+  line-height:normal;
+  letter-spacing:normal;
 }
 
+/* هوفر */
 .option:hover{
   background:#222;
   transform:scale(1.05);
 }
 
-/* زر الخط الأول (نفس الشكل لكن بخط First) */
-.option-first{
-  font-family:"First", sans-serif;
-  direction:rtl;            /* مهم لو الخط يدعم العربي */
-  letter-spacing:0;         /* خله طبيعي */
+/* ===== زر الخط السعودي (شكله الطبيعي) ===== */
+.option-saudi{
+  font-family:"Saudi";
+  font-size:26px;
+  font-weight:400;
+  line-height:1.35;
 }
 
-/* زر الخط السعودي */
-.option-saudi{
-  font-family:"Saudi", serif;
-  direction:rtl;
+/* ===== زر الخط الأول (شكله الطبيعي) ===== */
+.option-first{
+  font-family:"First";
+  font-size:28px;
+  font-weight:400;
+  line-height:1.1;
 }
 </style>
 </head>
@@ -107,13 +116,4 @@ h2{
   <!-- العنوان -->
   <h2>اختر الخط</h2>
 
-  <!-- الأزرار -->
-  <div class="options">
-    <a href="first.html" class="option option-first">الخط الأول</a>
-    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
-  </div>
-
-</div>
-
-</body>
-</html>
+  <!-- الأزر

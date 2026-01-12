@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>اختيار الخط</title>
 
-<!-- Saudi Font (من موقع وزارة الثقافة) -->
+<!-- Saudi Font -->
 <link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
 
 <style>
@@ -16,18 +16,10 @@
   font-style: normal;
 }
 
-/* توزيع الخطوط حسب اللغة */
-:lang(ar){
-  font-family: "Saudi", serif;
-}
-:lang(en){
-  font-family: "First", sans-serif;
-}
-
+/* =============== Base =============== */
 body{
   margin:0;
   background:#efe9d6;
-  font-family: Arial, sans-serif; /* احتياطي */
   min-height:100vh;
   display:flex;
   justify-content:center;
@@ -52,8 +44,9 @@ body{
   margin-bottom:45px;
 }
 
-/* العنوان */
+/* العنوان (Saudi) */
 h2{
+  font-family:"Saudi", serif;
   font-size:28px;
   margin-bottom:40px;
 }
@@ -79,6 +72,7 @@ h2{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  line-height:1;
 }
 
 .option:hover{
@@ -86,13 +80,16 @@ h2{
   transform:scale(1.05);
 }
 
-/* تخصيص الخط لكل زر */
+/* زر الخط الأول (نفس الشكل لكن بخط First) */
 .option-first{
-  font-family: "First", sans-serif;
-  direction:ltr;
+  font-family:"First", sans-serif;
+  direction:rtl;            /* مهم لو الخط يدعم العربي */
+  letter-spacing:0;         /* خله طبيعي */
 }
+
+/* زر الخط السعودي */
 .option-saudi{
-  font-family: "Saudi", serif;
+  font-family:"Saudi", serif;
   direction:rtl;
 }
 </style>
@@ -107,16 +104,13 @@ h2{
     <img src="logo.png" alt="Logo">
   </div>
 
-  <!-- العنوان (عربي = Saudi) -->
-  <h2 lang="ar">اختر الخط</h2>
+  <!-- العنوان -->
+  <h2>اختر الخط</h2>
 
   <!-- الأزرار -->
   <div class="options">
-    <!-- زر الخط الأول (إنجليزي بخط First) -->
-    <a href="first.html" class="option option-first" lang="en">First Font</a>
-
-    <!-- زر الخط السعودي (عربي بخط Saudi) -->
-    <a href="saudi.html" class="option option-saudi" lang="ar">الخط السعودي</a>
+    <a href="first.html" class="option option-first">الخط الأول</a>
+    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
   </div>
 
 </div>

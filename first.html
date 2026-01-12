@@ -14,21 +14,24 @@
     }
 
     :root{
-      --bg:#EAE4CD;
-      --text:#222;
-      --border:#c9c9c9;
-      --shadow:0 25px 50px rgba(0,0,0,.12);
+      --main:#2596be;
+      --btn:#1f7fa1;
+      --text:#ffffff;
+      --border:rgba(255,255,255,.35);
     }
+
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
-      background:var(--bg);
+      background:var(--main);
       font-family:Arial, sans-serif;
       min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
       padding:40px 0;
+      color:var(--text);
     }
 
     .wrap{
@@ -44,11 +47,10 @@
       margin:0 auto 22px;
     }
 
-    /* الكرت بنفس لون الخلفية */
+    /* نفس لون الصفحة بالضبط */
     .card{
-      background:var(--bg);
+      background:var(--main);
       border-radius:50px;
-      box-shadow:var(--shadow);
       padding:55px 50px 60px;
     }
 
@@ -57,17 +59,17 @@
       max-width:880px;
       height:120px;
       border-radius:26px;
-      border:1.5px solid var(--border);
+      border:2px solid var(--border);
       font-size:52px;
       text-align:center;
       outline:none;
       font-family:"AlAwwal", Arial, sans-serif;
-      color:var(--text);
+      color:#fff;
       background:transparent;
     }
 
     .input::placeholder{
-      color:#666;
+      color:rgba(255,255,255,.7);
     }
 
     .actions{
@@ -79,7 +81,7 @@
     }
 
     .btn{
-      background:#000;
+      background:var(--btn);
       color:#fff;
       border:none;
       border-radius:22px;
@@ -87,16 +89,15 @@
       font-size:28px;
       font-weight:800;
       cursor:pointer;
-      box-shadow:0 12px 25px rgba(0,0,0,.18);
       transition:.2s;
     }
 
     .btn:hover{
-      background:#222;
+      background:#196c88;
       transform:scale(1.03);
     }
 
-    /* الطباعة (الاسم فقط) */
+    /* الطباعة (اسم فقط) */
     .print-only{
       display:none;
       font-family:"AlAwwal", Arial, sans-serif;

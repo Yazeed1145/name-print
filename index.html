@@ -1,129 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>البشت الحساوي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>اختيار الخط</title>
 
-  <style>
-    :root{
-      --bg:#EAE4CD;
-      --card:#EFEAD3;
-      --text:#000;
-    }
+<style>
+/* الخط السعودي */
+@font-face{
+  font-family:"Saudi";
+  src:url("SaudiWeb-Regular.woff") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 
-    *{
-      box-sizing:border-box;
-    }
+/* الخط الأول */
+@font-face{
+  font-family:"AlAwwal";
+  src:url("Al-AwwalWeb-Regular.woff") format("woff");
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+}
 
-    html, body{
-      margin:0;
-      padding:0;
-      width:100%;
-      height:100%;
-      background:var(--bg);
-      font-family: Arial, sans-serif;
-    }
+/* اللون الموحد */
+:root{
+  --main:#ede9d5;
+}
 
-    body{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px 16px;
-    }
+/* الصفحة */
+body{
+  margin:0;
+  background:var(--main);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-    /* الكرت الرئيسي */
-    .container{
-      width:1200px;
-      max-width:95%;
-      background:var(--card);
-      border-radius:40px;
-      padding:40px 40px 60px;
-    }
+/* الكرت (نفس لون الصفحة) */
+.card{
+  background:var(--main);
+  width:900px;
+  max-width:92%;
+  padding:50px 40px 60px;
+  border-radius:35px;
+  box-shadow:0 20px 45px rgba(0,0,0,.18); /* ظل خفيف فقط */
+  text-align:center;
+}
 
-    /* البانر */
-    .banner{
-      background:#2a1c12;
-      border-radius:24px;
-      overflow:hidden;
-      margin-bottom:40px;
-    }
+/* اللوقو */
+.logo img{
+  width:800px;
+  max-width:100%;
+  margin-bottom:45px;
+}
 
-    .banner img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+/* العنوان */
+h2{
+  font-family:"Saudi", serif;
+  font-size:28px;
+  margin:0 0 40px;
+  color:#000;
+}
 
-    /* العنوان */
-    .title{
-      text-align:center;
-      font-size:28px;
-      font-weight:500;
-      margin-bottom:40px;
-      color:var(--text);
-    }
+/* الأزرار */
+.options{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+}
 
-    /* الأزرار */
-    .buttons{
-      display:flex;
-      justify-content:center;
-      gap:40px;
-      flex-wrap:wrap;
-    }
+/* شكل الزر */
+.option{
+  background:#000;
+  color:#fff;
+  width:360px;
+  height:110px;
+  border-radius:26px;
+  text-decoration:none;
+  transition:.2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .btn{
-      background:#000;
-      color:#fff;
-      border:none;
-      border-radius:26px;
-      padding:28px 60px;
-      font-size:28px;
-      font-weight:700;
-      cursor:pointer;
-      min-width:320px;
-      transition:.2s;
-    }
+.option:hover{
+  background:#111;
+  transform:scale(1.03);
+}
 
-    .btn:hover{
-      background:#111;
-      transform:translateY(-2px);
-    }
+/* زر الخط السعودي */
+.option-saudi{
+  font-family:"Saudi", serif;
+  font-size:38px;
+  font-weight:400;
+  line-height:1.2;
+}
 
-    @media (max-width:768px){
-      .btn{
-        width:100%;
-        min-width:auto;
-      }
-    }
-  </style>
+/* زر الخط الأول */
+.option-first{
+  font-family:"AlAwwal", Arial, sans-serif;
+  font-size:38px;
+  font-weight:normal;
+  line-height:1.1;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="card">
 
-    <!-- البانر -->
-    <div class="banner">
-      <!-- غير اسم الصورة إذا لزم -->
-      <img src="banner.png" alt="البشت الحساوي">
-    </div>
-
-    <!-- العنوان -->
-    <div class="title">اختر الخط</div>
-
-    <!-- الأزرار -->
-    <div class="buttons">
-      <button class="btn" onclick="location.href='alawwal.html'">
-        الخط الأول
-      </button>
-
-      <button class="btn" onclick="location.href='saudi.html'">
-        الخط السعودي
-      </button>
-    </div>
-
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
   </div>
+
+  <h2>اختر الخط</h2>
+
+  <div class="options">
+    <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
+    <a href="first.html" class="option option-first">الخط الأول</a>
+  </div>
+
+</div>
 
 </body>
 </html>

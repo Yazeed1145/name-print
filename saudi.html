@@ -6,7 +6,7 @@
   <title>الخط السعودي</title>
 
   <style>
-    /* ✅ تحميل الخط السعودي */
+    /* تحميل الخط السعودي */
     @font-face{
       font-family: "Saudi";
       src: url("./SaudiWeb-Regular.woff") format("woff");
@@ -16,20 +16,21 @@
     }
 
     :root{
-      --bg:#EAE4CD;           /* اللون الموحد */
-      --text:#222;
+      --bg:#EAE4CD;   /* اللون الموحد */
+      --text:#2b241a;
       --border:rgba(0,0,0,.25);
-      --radius: 35px;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
     html, body{
       width:100%;
       height:100%;
       margin:0;
       padding:0;
-      background: var(--bg);
+      background:var(--bg);
       font-family: Arial, sans-serif;
     }
 
@@ -38,67 +39,63 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 40px 16px;
+      padding:40px 16px;
       color:var(--text);
     }
 
-    /* ✅ الكرت نفس لون الخلفية بالضبط (بدون أبيض وبدون ظل) */
+    /* الكرت بنفس لون الصفحة بالضبط */
     .card{
-      background: var(--bg);
-      width: 1100px;
-      max-width: 96%;
-      padding: 50px 40px 60px;
-      border-radius: var(--radius);
+      background:var(--bg);
+      width:1100px;
+      max-width:96%;
+      padding:50px 40px 60px;
+      border-radius:40px;
       text-align:center;
     }
 
-    /* الهيدر / اللوقو */
+    /* الهيدر */
     .logo{
-      margin-bottom: 30px;
-    }
-    .logo img{
-      width: 980px;
-      max-width: 100%;
-      height: auto;
-      display:block;
-      margin: 0 auto;
+      margin-bottom:30px;
     }
 
-    /* مربع الاسم */
+    .logo img{
+      width:980px;
+      max-width:100%;
+      display:block;
+      margin:0 auto;
+    }
+
+    /* حقل الاسم */
     .inputWrap{
-      margin: 30px auto 0;
-      width: 900px;
-      max-width: 92%;
+      margin:30px auto 0;
+      width:900px;
+      max-width:92%;
     }
 
     #nameInput{
       width:100%;
-      padding: 26px 24px;
-      border-radius: 22px;
-      border: 2px solid var(--border);
-      outline: none;
-      font-size: 44px;
-      text-align: center;
+      padding:26px 24px;
+      border-radius:24px;
+      border:2px solid var(--border);
+      outline:none;
+      font-size:44px;
+      text-align:center;
       color:var(--text);
-
-      /* ✅ شفاف عشان ما يطلع أبيض */
-      background: transparent;
-
-      /* ✅ تطبيق الخط السعودي */
-      font-family: "Saudi", Arial, sans-serif;
+      background:transparent;
+      font-family:"Saudi", Arial, sans-serif;
     }
 
     #nameInput::placeholder{
-      color:#555;
+      color:#6a645a;
     }
 
     /* الأزرار */
     .btnRow{
-      margin-top: 26px;
+      margin-top:28px;
       display:flex;
       justify-content:center;
-      gap: 22px;
-      flex-wrap: wrap;
+      gap:22px;
+      flex-wrap:wrap;
     }
 
     .btn{
@@ -106,27 +103,31 @@
       color:#fff;
       border:0;
       cursor:pointer;
-      padding: 18px 34px;
-      border-radius: 20px;
-      font-size: 22px;
-      font-weight: 800;
+      padding:18px 36px;
+      border-radius:22px;
+      font-size:22px;
+      font-weight:800;
+      min-width:160px;
       transition:.15s;
-      min-width: 160px;
     }
+
     .btn:hover{
       background:#111;
-      transform: translateY(-1px);
+      transform:translateY(-1px);
     }
 
-    /* ✅ إعدادات الطباعة: اطبع الاسم فقط */
+    /* الطباعة: الاسم فقط */
     @media print{
-      body{ background:#fff !important; padding:0; }
+      body{
+        background:#fff !important;
+        padding:0;
+      }
 
       .card{
-        border-radius:0;
         padding:0;
         width:100%;
         max-width:100%;
+        border-radius:0;
       }
 
       .logo,
@@ -143,12 +144,14 @@
       #nameInput{
         border:0 !important;
         padding:0 !important;
-        font-size: 80px !important;
+        font-size:80px !important;
         color:#000 !important;
-        background: transparent !important;
+        background:transparent !important;
       }
 
-      @page{ margin:0; }
+      @page{
+        margin:0;
+      }
     }
   </style>
 </head>
@@ -156,12 +159,11 @@
 <body>
 
   <div class="card">
-    <!-- الهيدر -->
+
     <div class="logo">
       <img src="logo.png" alt="logo">
     </div>
 
-    <!-- الاسم -->
     <div class="inputWrap">
       <input
         id="nameInput"
@@ -175,6 +177,7 @@
         <button class="btn" onclick="window.print()">طباعة</button>
       </div>
     </div>
+
   </div>
 
   <script>

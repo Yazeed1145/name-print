@@ -3,22 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الخط السعودي</title>
+  <title>البشت الحساوي</title>
 
   <style>
-    /* تحميل الخط السعودي */
-    @font-face{
-      font-family: "Saudi";
-      src: url("./SaudiWeb-Regular.woff") format("woff");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
     :root{
-      --bg:#EAE4CD;   /* اللون الموحد */
-      --text:#2b241a;
-      --border:rgba(0,0,0,.25);
+      --bg:#EAE4CD;
+      --card:#EFEAD3;
+      --text:#000;
     }
 
     *{
@@ -26,131 +17,83 @@
     }
 
     html, body{
-      width:100%;
-      height:100%;
       margin:0;
       padding:0;
+      width:100%;
+      height:100%;
       background:var(--bg);
       font-family: Arial, sans-serif;
     }
 
     body{
-      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:40px 16px;
-      color:var(--text);
     }
 
-    /* الكرت بنفس لون الصفحة بالضبط */
-    .card{
-      background:var(--bg);
-      width:1100px;
-      max-width:96%;
-      padding:50px 40px 60px;
+    /* الكرت الرئيسي */
+    .container{
+      width:1200px;
+      max-width:95%;
+      background:var(--card);
       border-radius:40px;
-      text-align:center;
+      padding:40px 40px 60px;
     }
 
-    /* الهيدر */
-    .logo{
-      margin-bottom:30px;
-    }
-
-    .logo img{
-      width:980px;
-      max-width:100%;
-      display:block;
-      margin:0 auto;
-    }
-
-    /* حقل الاسم */
-    .inputWrap{
-      margin:30px auto 0;
-      width:900px;
-      max-width:92%;
-    }
-
-    #nameInput{
-      width:100%;
-      padding:26px 24px;
+    /* البانر */
+    .banner{
+      background:#2a1c12;
       border-radius:24px;
-      border:2px solid var(--border);
-      outline:none;
-      font-size:44px;
-      text-align:center;
-      color:var(--text);
-      background:transparent;
-      font-family:"Saudi", Arial, sans-serif;
+      overflow:hidden;
+      margin-bottom:40px;
     }
 
-    #nameInput::placeholder{
-      color:#6a645a;
+    .banner img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* العنوان */
+    .title{
+      text-align:center;
+      font-size:28px;
+      font-weight:500;
+      margin-bottom:40px;
+      color:var(--text);
     }
 
     /* الأزرار */
-    .btnRow{
-      margin-top:28px;
+    .buttons{
       display:flex;
       justify-content:center;
-      gap:22px;
+      gap:40px;
       flex-wrap:wrap;
     }
 
     .btn{
       background:#000;
       color:#fff;
-      border:0;
+      border:none;
+      border-radius:26px;
+      padding:28px 60px;
+      font-size:28px;
+      font-weight:700;
       cursor:pointer;
-      padding:18px 36px;
-      border-radius:22px;
-      font-size:22px;
-      font-weight:800;
-      min-width:160px;
-      transition:.15s;
+      min-width:320px;
+      transition:.2s;
     }
 
     .btn:hover{
       background:#111;
-      transform:translateY(-1px);
+      transform:translateY(-2px);
     }
 
-    /* الطباعة: الاسم فقط */
-    @media print{
-      body{
-        background:#fff !important;
-        padding:0;
-      }
-
-      .card{
-        padding:0;
+    @media (max-width:768px){
+      .btn{
         width:100%;
-        max-width:100%;
-        border-radius:0;
-      }
-
-      .logo,
-      .btnRow{
-        display:none !important;
-      }
-
-      .inputWrap{
-        width:100%;
-        max-width:100%;
-        margin:0;
-      }
-
-      #nameInput{
-        border:0 !important;
-        padding:0 !important;
-        font-size:80px !important;
-        color:#000 !important;
-        background:transparent !important;
-      }
-
-      @page{
-        margin:0;
+        min-width:auto;
       }
     }
   </style>
@@ -158,37 +101,29 @@
 
 <body>
 
-  <div class="card">
+  <div class="container">
 
-    <div class="logo">
-      <img src="logo.png" alt="logo">
+    <!-- البانر -->
+    <div class="banner">
+      <!-- غير اسم الصورة إذا لزم -->
+      <img src="banner.png" alt="البشت الحساوي">
     </div>
 
-    <div class="inputWrap">
-      <input
-        id="nameInput"
-        type="text"
-        placeholder="اكتب اسمك"
-        autocomplete="off"
-      />
+    <!-- العنوان -->
+    <div class="title">اختر الخط</div>
 
-      <div class="btnRow">
-        <button class="btn" onclick="goBack()">رجوع</button>
-        <button class="btn" onclick="window.print()">طباعة</button>
-      </div>
+    <!-- الأزرار -->
+    <div class="buttons">
+      <button class="btn" onclick="location.href='alawwal.html'">
+        الخط الأول
+      </button>
+
+      <button class="btn" onclick="location.href='saudi.html'">
+        الخط السعودي
+      </button>
     </div>
 
   </div>
-
-  <script>
-    function goBack(){
-      window.location.href = 'index.html';
-    }
-
-    window.addEventListener('load', ()=>{
-      document.getElementById('nameInput').focus();
-    });
-  </script>
 
 </body>
 </html>

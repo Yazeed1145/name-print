@@ -13,9 +13,16 @@
       font-style:normal;
     }
 
+    :root{
+      --bg:#EAE4CD;
+      --text:#222;
+      --border:#c9c9c9;
+      --shadow:0 25px 50px rgba(0,0,0,.12);
+    }
+
     body{
       margin:0;
-      background:#efe9d6;
+      background:var(--bg);
       font-family:Arial, sans-serif;
       min-height:100vh;
       display:flex;
@@ -31,16 +38,17 @@
     }
 
     .logo img{
-      width:820px; /* كبّر اللوقو هنا */
+      width:820px;
       max-width:100%;
       display:block;
       margin:0 auto 22px;
     }
 
+    /* الكرت بنفس لون الخلفية */
     .card{
-      background:#fff;
+      background:var(--bg);
       border-radius:50px;
-      box-shadow:0 25px 50px rgba(0,0,0,.15);
+      box-shadow:var(--shadow);
       padding:55px 50px 60px;
     }
 
@@ -49,12 +57,17 @@
       max-width:880px;
       height:120px;
       border-radius:26px;
-      border:1.5px solid #c9c9c9;
+      border:1.5px solid var(--border);
       font-size:52px;
       text-align:center;
       outline:none;
       font-family:"AlAwwal", Arial, sans-serif;
-      color:#222;
+      color:var(--text);
+      background:transparent;
+    }
+
+    .input::placeholder{
+      color:#666;
     }
 
     .actions{
@@ -83,7 +96,7 @@
       transform:scale(1.03);
     }
 
-    /* منطقة الطباعة (الاسم فقط) */
+    /* الطباعة (الاسم فقط) */
     .print-only{
       display:none;
       font-family:"AlAwwal", Arial, sans-serif;
@@ -91,6 +104,7 @@
       text-align:center;
       direction:rtl;
       width:100%;
+      color:#000;
     }
 
     @media print{
@@ -151,7 +165,6 @@
     </div>
   </div>
 
-  <!-- هذا اللي ينطبع فقط -->
   <div id="printText" class="print-only"></div>
 
   <script>

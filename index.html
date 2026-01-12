@@ -5,11 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>اختيار الخط</title>
 
-<!-- الخط السعودي -->
-<link rel="stylesheet" href="https://engage.moc.gov.sa/e/fonts/saudi-font/css/saudi-font.css">
-
 <style>
-/* ✅ الخط الأول (AlAwwal) - نفس اللي عندك في صفحة first.html */
+/* الخط السعودي من ملفك */
+@font-face{
+  font-family:"Saudi";
+  src:url("SaudiWeb-Regular.woff") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+/* الخط الأول من ملفك */
 @font-face{
   font-family:"AlAwwal";
   src:url("Al-AwwalWeb-Regular.woff") format("woff");
@@ -56,13 +62,13 @@ h2{
   flex-wrap:wrap;
 }
 
-/* شكل الزر ثابت */
+/* شكل الزر */
 .option{
   background:#000;
   color:#fff;
   width:360px;
-  padding:26px 20px;
-  border-radius:24px;
+  height:110px;
+  border-radius:26px;
   text-decoration:none;
   transition:.2s;
   display:flex;
@@ -75,19 +81,20 @@ h2{
   transform:scale(1.03);
 }
 
-/* ✅ كل زر بخطه الحقيقي */
+/* ✅ زر الخط السعودي (زي الصورة) */
+.option-saudi{
+  font-family:"Saudi", serif;
+  font-size:38px;
+  font-weight:400;
+  line-height:1.2;
+}
+
+/* ✅ زر الخط الأول */
 .option-first{
   font-family:"AlAwwal", Arial, sans-serif;
   font-size:38px;
   font-weight:normal;
   line-height:1.1;
-}
-
-.option-saudi{
-  font-family:"Saudi", serif;
-  font-size:34px;
-  font-weight:400;
-  line-height:1.35;
 }
 </style>
 </head>
@@ -95,6 +102,7 @@ h2{
 <body>
 
 <div class="card">
+
   <div class="logo">
     <img src="logo.png" alt="Logo">
   </div>
@@ -102,9 +110,13 @@ h2{
   <h2>اختر الخط</h2>
 
   <div class="options">
-    <a href="first.html" class="option option-first">الخط الأول</a>
+    <!-- ✅ حسب الصورة: السعودي يسار -->
     <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
+
+    <!-- ✅ حسب الصورة: الأول يمين -->
+    <a href="first.html" class="option option-first">الخط الأول</a>
   </div>
+
 </div>
 
 </body>

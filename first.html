@@ -9,35 +9,38 @@
     @font-face{
       font-family:"AlAwwal";
       src:url("Al-AwwalWeb-Regular.woff") format("woff");
-      font-weight:normal;
-      font-style:normal;
     }
 
     :root{
-      --main:#2596be;
-      --btn:#1f7fa1;
-      --text:#ffffff;
-      --border:rgba(255,255,255,.35);
+      --bg:#EAE4CD;
+      --text:#222;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+      background-color:transparent;
+    }
+
+    html, body{
+      margin:0;
+      padding:0;
+      width:100%;
+      height:100%;
+      background:var(--bg);
+      font-family:Arial, sans-serif;
+    }
 
     body{
-      margin:0;
-      background:var(--main);
-      font-family:Arial, sans-serif;
-      min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:40px 0;
-      color:var(--text);
     }
 
     .wrap{
       width:1100px;
       max-width:92%;
       text-align:center;
+      background:var(--bg);
     }
 
     .logo img{
@@ -47,9 +50,9 @@
       margin:0 auto 22px;
     }
 
-    /* نفس لون الصفحة بالضبط */
+    /* الكرت بنفس اللون تمامًا */
     .card{
-      background:var(--main);
+      background:var(--bg);
       border-radius:50px;
       padding:55px 50px 60px;
     }
@@ -59,17 +62,17 @@
       max-width:880px;
       height:120px;
       border-radius:26px;
-      border:2px solid var(--border);
+      border:2px solid rgba(0,0,0,.25);
       font-size:52px;
       text-align:center;
       outline:none;
       font-family:"AlAwwal", Arial, sans-serif;
-      color:#fff;
+      color:var(--text);
       background:transparent;
     }
 
     .input::placeholder{
-      color:rgba(255,255,255,.7);
+      color:#555;
     }
 
     .actions{
@@ -81,7 +84,7 @@
     }
 
     .btn{
-      background:var(--btn);
+      background:#000;
       color:#fff;
       border:none;
       border-radius:22px;
@@ -89,22 +92,15 @@
       font-size:28px;
       font-weight:800;
       cursor:pointer;
-      transition:.2s;
     }
 
-    .btn:hover{
-      background:#196c88;
-      transform:scale(1.03);
-    }
-
-    /* الطباعة (اسم فقط) */
+    /* الطباعة (الاسم فقط) */
     .print-only{
       display:none;
       font-family:"AlAwwal", Arial, sans-serif;
       font-size:120px;
       text-align:center;
       direction:rtl;
-      width:100%;
       color:#000;
     }
 
@@ -120,6 +116,7 @@
         top:50%;
         left:50%;
         transform:translate(-50%,-50%);
+        background:#fff;
       }
 
       @page{

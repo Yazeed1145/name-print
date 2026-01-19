@@ -1,62 +1,162 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طباعة اللوقو</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اختيار الخط</title>
 
-<style>
-body{
-  margin:0;
-  background:#EAE4CD;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial, sans-serif;
-}
+  <style>
+    /* الخط السعودي */
+    @font-face {
+      font-family: "Saudi";
+      src: url("SaudiWeb-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-.print-logo{
-  display:none; /* مخفي في العرض العادي */
-}
+    /* الخط الأول */
+    @font-face {
+      font-family: "AlAwwal";
+      src: url("Al-AwwalWeb-Regular.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
 
-@media print{
-  @page{
-    size:80mm 200mm;
-    margin:0;
-  }
+    /* اللون الموحد */
+    :root {
+      --main: #EAE4CD;
+    }
 
-  body{
-    margin:0;
-    background:#fff;
-  }
+    /* الصفحة */
+    body {
+      margin: 0;
+      background: var(--main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "AlAwwal", Arial, sans-serif;
+    }
 
-  body *{
-    display:none !important;
-  }
+    /* الكرت */
+    .card {
+      background: var(--main);
+      width: 900px;
+      max-width: 92%;
+      padding: 50px 40px 60px;
+      border-radius: 35px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+      text-align: center;
+      box-sizing: border-box;
+    }
 
-  .print-logo{
-    display:flex !important;
-    width:80mm;
-    height:200mm;
-    align-items:center;
-    justify-content:center;
-  }
+    /* اللوقو */
+    .logo img {
+      width: 800px;
+      max-width: 100%;
+      margin-bottom: 45px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  .print-logo img{
-    width:65mm;
-    height:auto;
-  }
-}
-</style>
+    /* العنوان */
+    h2 {
+      font-family: "Saudi", serif;
+      font-size: 28px;
+      margin: 0 0 40px;
+      color: #000;
+    }
+
+    /* الأزرار */
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* شكل الزر */
+    .option {
+      background: #000;
+      color: #fff;
+      width: 360px;
+      height: 110px;
+      border-radius: 26px;
+      text-decoration: none;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .option:hover {
+      background: #111;
+      transform: scale(1.03);
+    }
+
+    /* زر الخط السعودي */
+    .option-saudi {
+      font-family: "Saudi", serif;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* زر الخط الأول */
+    .option-first {
+      font-family: "AlAwwal", Arial, sans-serif;
+      font-size: 38px;
+      font-weight: normal;
+      line-height: 1.1;
+    }
+
+    /* استجابة للأجهزة الصغيرة */
+    @media (max-width: 400px) {
+      .option {
+        width: 90%;
+        height: 90px;
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    /* --- إضافة الصورة للطباعة فقط --- */
+    @media print {
+      body::before {
+        content: "";
+        display: block;
+        width: 200px;
+        height: 200px;
+        background-image: url('logoo.png'); /* ضع اسم ملفك هنا */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 20px auto;
+      }
+
+      /* إخفاء العناصر الأخرى عند الطباعة إذا تحب */
+      .card, .options, h2 {
+        display: none;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<!-- اللوقو للطباعة -->
-<div class="print-logo">
-  <img src="logoo.png" alt="اللوقو">
-</div>
-
+  <div class="card">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <h2>اختر الخط</h2>
+    <div class="options">
+      <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
+      <a href="first.html" class="option option-first">الخط الأول</a>
+    </div>
+  </div>
 </body>
 </html>

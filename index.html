@@ -6,8 +6,6 @@
 <title>طباعة اللوقو</title>
 
 <style>
-
-/* ===== العرض العادي ===== */
 body{
   margin:0;
   background:#EAE4CD;
@@ -18,14 +16,11 @@ body{
   font-family:Arial, sans-serif;
 }
 
-/* ===== عنصر اللوقو ===== */
 .print-logo{
   display:none; /* مخفي في العرض العادي */
 }
 
-/* ===== إعدادات الطباعة ===== */
 @media print{
-
   @page{
     size:80mm 200mm;
     margin:0;
@@ -36,12 +31,10 @@ body{
     background:#fff;
   }
 
-  /* إخفاء كل عناصر الصفحة */
   body *{
     display:none !important;
   }
 
-  /* إظهار اللوقو فقط */
   .print-logo{
     display:flex !important;
     width:80mm;
@@ -51,7 +44,7 @@ body{
   }
 
   .print-logo img{
-    width:65mm;   /* حجم اللوقو */
+    width:65mm;
     height:auto;
   }
 }
@@ -62,7 +55,7 @@ body{
 
 <!-- اللوقو للطباعة -->
 <div class="print-logo">
-  <img src="logo.png" alt="اللوقو">
+  <img src="logoo.png" alt="اللوقو">
 </div>
 
 </body>

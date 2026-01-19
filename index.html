@@ -7,35 +7,24 @@
 
 <style>
 
-/* إعدادات عامة */
+/* ===== العرض العادي ===== */
 body{
   margin:0;
-  background:#f0ead6;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  background:#EAE4CD;
   min-height:100vh;
-}
-
-/* معاينة قبل الطباعة */
-.preview{
-  width:80mm;
-  height:200mm;
-  background:#fff;
   display:flex;
-  align-items:center;
   justify-content:center;
-  box-shadow:0 0 15px rgba(0,0,0,.2);
+  align-items:center;
+  font-family:Arial, sans-serif;
 }
 
-/* اللوقو */
-.preview img{
-  width:65mm;
-  height:auto;
+/* ===== عنصر اللوقو ===== */
+.print-logo{
+  display:none; /* مخفي في العرض العادي */
 }
 
-/* إعدادات الطباعة */
-@media print {
+/* ===== إعدادات الطباعة ===== */
+@media print{
 
   @page{
     size:80mm 200mm;
@@ -43,23 +32,37 @@ body{
   }
 
   body{
+    margin:0;
     background:#fff;
   }
 
-  .preview{
-    width:80mm;
-    height:200mm;
-    box-shadow:none;
+  /* إخفاء كل عناصر الصفحة */
+  body *{
+    display:none !important;
   }
 
+  /* إظهار اللوقو فقط */
+  .print-logo{
+    display:flex !important;
+    width:80mm;
+    height:200mm;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .print-logo img{
+    width:65mm;   /* حجم اللوقو */
+    height:auto;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="preview">
-  <img src="logo-print.png" alt="اللوقو">
+<!-- اللوقو للطباعة -->
+<div class="print-logo">
+  <img src="logo.png" alt="اللوقو">
 </div>
 
 </body>

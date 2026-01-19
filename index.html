@@ -126,94 +126,40 @@
       }
     }
 
-    /* الصورة للطباعة فقط */
-    .print-photo {
-      display: none; /* مخفية في العرض العادي */
-      width: 200px;
-      height: 200px;
-      margin: 20px auto;
+    /* --- إضافة الصورة للطباعة فقط --- */
+    @media print {
+      body::before {
+        content: "";
+        display: block;
+        width: 200px;
+        height: 200px;
+        background-image: url('Photo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 20px auto;
+      }
+
+      /* إخفاء العناصر الأخرى عند الطباعة */
+      .card, .options, h2 {
+        display: none;
+      }
     }
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طباعة</title>
-
-<style>
-body{
-  margin:0;
-  background:#EAE4CD;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* كرت العرض العادي */
-.card{
-  background:#EAE4CD;
-  padding:40px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-/* صورة الطباعة */
-.print-photo{
-  display:none;
-  width:200px;
-  margin:100px auto;
-}
-
-/* ===== الطباعة ===== */
-@media print{
-
-  body{
-    display:block !important;
-    background:#fff;
-  }
-
-  /* إخفاء كل شيء */
-  .card{
-    display:none;
-  }
-
-  /* إظهار الصورة */
-  .print-photo{
-    display:block;
-  }
-
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-  هذا مجرد محتوى للعرض
-</div>
-
-<img src="photo.png" class="print-photo">
-
-</body>
-</html>
-
-
   </style>
 </head>
+
 <body>
   <div class="card">
     <div class="logo">
       <img src="logo.png" alt="Logo">
     </div>
+
     <h2>اختر الخط</h2>
+
     <div class="options">
       <a href="saudi.html" class="option option-saudi">الخط السعودي</a>
       <a href="first.html" class="option option-first">الخط الأول</a>
     </div>
   </div>
-
-  <!-- الصورة التي تظهر عند الطباعة فقط -->
-  <img src="photo.png" class="print-photo" alt="Print Photo">
 </body>
 </html>

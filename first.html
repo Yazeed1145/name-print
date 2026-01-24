@@ -7,8 +7,10 @@
 
   <style>
     @font-face{
-      font-family:"AlAwwal";
-      src:url("Al-AwwalWeb-Regular.woff") format("woff");
+      font-family: "AlAwwal";
+      src: url("Al-AwwalWeb-Regular.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
     }
 
     :root{
@@ -18,7 +20,6 @@
 
     *{
       box-sizing:border-box;
-      background-color:transparent;
     }
 
     html, body{
@@ -40,7 +41,6 @@
       width:1100px;
       max-width:92%;
       text-align:center;
-      background:var(--bg);
     }
 
     .logo img{
@@ -50,7 +50,6 @@
       margin:0 auto 22px;
     }
 
-    /* الكرت بنفس اللون تمامًا */
     .card{
       background:var(--bg);
       border-radius:50px;
@@ -94,14 +93,24 @@
       cursor:pointer;
     }
 
-    /* الطباعة (الاسم فقط) */
+    /* ===== الطباعة فقط ===== */
     .print-only{
       display:none;
       font-family:"AlAwwal", Arial, sans-serif;
-      font-size:120px;
       text-align:center;
       direction:rtl;
       color:#000;
+    }
+
+    .print-logo{
+      width:300px;
+      max-width:80%;
+      margin:0 auto 40px;
+      display:block;
+    }
+
+    .print-name{
+      font-size:120px;
     }
 
     @media print{
@@ -117,6 +126,7 @@
         left:50%;
         transform:translate(-50%,-50%);
         background:#fff;
+        width:100%;
       }
 
       @page{
@@ -142,6 +152,7 @@
 </head>
 
 <body>
+
   <div class="wrap">
     <div class="logo">
       <img src="logo.png" alt="Logo">
@@ -163,7 +174,11 @@
     </div>
   </div>
 
-  <div id="printText" class="print-only"></div>
+  <!-- محتوى الطباعة -->
+  <div class="print-only">
+    <img src="logo.png" alt="Logo" class="print-logo">
+    <div id="printText" class="print-name"></div>
+  </div>
 
   <script>
     const nameInput = document.getElementById("nameInput");
@@ -183,5 +198,6 @@
       window.print();
     }
   </script>
+
 </body>
 </html>

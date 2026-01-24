@@ -60,21 +60,28 @@ body{
 }
 
 .actions{
-  margin-top:30px;
+  margin-top:40px;
   display:flex;
   justify-content:center;
-  gap:20px;
+  gap:30px;
 }
 
 .btn{
-  padding:15px 40px;
-  font-size:24px;
+  padding:25px 60px; /* تكبير الزر */
+  font-size:32px; /* حجم خط أكبر */
   font-weight:700;
   border:none;
-  border-radius:20px;
+  border-radius:25px;
   background:#000;
   color:#fff;
   cursor:pointer;
+  transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  background:#333;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* الطباعة */
@@ -95,19 +102,24 @@ body{
   font-size:100px;
   line-height:1.2;
   word-break:break-word;
+  max-width:90%;
 }
 
-@media print{
-  body *{ display:none !important; }
-  .print-only, .print-only *{ display:block !important; }
-  .print-only{
-    position:fixed;
-    inset:0;
-    display:flex !important;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+/* تعديل الطباعة ليعمل على جميع المتصفحات */
+@media print {
+  body > *:not(.print-only) {
+    display: none !important;
   }
+
+  .print-only {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  }
+
   @page{
     size:A5;
     margin:0;
@@ -133,7 +145,7 @@ body{
 
 <!-- الطباعة فقط -->
 <div class="print-only">
-  <img src="logo.png" class="print-logo" alt="photo">
+  <img src="logo.png" class="print-logo" alt="Logo">
   <div id="printText" class="print-name"></div>
 </div>
 
@@ -154,8 +166,14 @@ function doPrint(){
 
   printText.textContent = val;
 
-  // تصغير تلقائي لو الاسم طويل
-  printText.style.fontSize = val.length > 12 ? "100px" : "200px";
+  // تصغير تلقائي للخط لو الاسم طويل
+  if(val.length > 20){
+    printText.style.fontSize = "60px";
+  } else if(val.length > 12){
+    printText.style.fontSize = "80px";
+  } else {
+    printText.style.fontSize = "100px";
+  }
 
   window.print();
 }

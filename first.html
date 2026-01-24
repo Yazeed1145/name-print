@@ -9,8 +9,6 @@
     @font-face{
       font-family: "AlAwwal";
       src: url("Al-AwwalWeb-Regular.woff") format("woff");
-      font-weight: normal;
-      font-style: normal;
     }
 
     :root{
@@ -46,8 +44,8 @@
     .logo img{
       width:820px;
       max-width:100%;
-      display:block;
       margin:0 auto 22px;
+      display:block;
     }
 
     .card{
@@ -70,16 +68,11 @@
       background:transparent;
     }
 
-    .input::placeholder{
-      color:#555;
-    }
-
     .actions{
       margin-top:35px;
       display:flex;
       justify-content:center;
       gap:30px;
-      flex-wrap:wrap;
     }
 
     .btn{
@@ -93,20 +86,19 @@
       cursor:pointer;
     }
 
-    /* ===== الطباعة فقط ===== */
+    /* ================= الطباعة ================= */
     .print-only{
       display:none;
-      font-family:"AlAwwal", Arial, sans-serif;
       text-align:center;
+      font-family:"AlAwwal", Arial, sans-serif;
       direction:rtl;
       color:#000;
     }
 
     .print-logo{
-      width:300px;
-      max-width:80%;
+      width:260px;
       margin:0 auto 40px;
-      display:block;
+      display:inline-block;
     }
 
     .print-name{
@@ -115,37 +107,24 @@
 
     @media print{
       body *{
-        visibility:hidden !important;
+        display:none !important;
+      }
+
+      .print-only,
+      .print-only *{
+        display:block !important;
       }
 
       .print-only{
-        display:block !important;
-        visibility:visible !important;
         position:fixed;
         top:50%;
         left:50%;
         transform:translate(-50%,-50%);
-        background:#fff;
         width:100%;
       }
 
       @page{
         margin:0;
-      }
-    }
-
-    @media (max-width:600px){
-      .card{
-        padding:35px 25px 45px;
-        border-radius:35px;
-      }
-      .input{
-        height:95px;
-        font-size:40px;
-      }
-      .btn{
-        font-size:22px;
-        padding:18px 40px;
       }
     }
   </style>
@@ -164,7 +143,6 @@
         class="input"
         type="text"
         placeholder="اكتب اسمك"
-        autocomplete="off"
       />
 
       <div class="actions">
@@ -174,9 +152,9 @@
     </div>
   </div>
 
-  <!-- محتوى الطباعة -->
+  <!-- محتوى الطباعة فقط -->
   <div class="print-only">
-    <img src="logo.png" alt="Logo" class="print-logo">
+    <img src="logo.png" class="print-logo" alt="Logo">
     <div id="printText" class="print-name"></div>
   </div>
 
@@ -189,7 +167,7 @@
     }
 
     function doPrint(){
-      const val = (nameInput.value || "").trim();
+      const val = nameInput.value.trim();
       if(!val){
         alert("اكتب الاسم أولاً");
         return;

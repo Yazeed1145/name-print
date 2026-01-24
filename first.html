@@ -1,181 +1,59 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>الخط الأول</title>
+<style>
+@font-face{
+  font-family: "AlAwwal";
+  src:
+    url("Al-AwwalWeb-Regular.woff2") format("woff2"),
+    url("Al-AwwalWeb-Regular.woff") format("woff");
+  font-display: swap;
+}
 
-  <style>
-    @font-face{
-      font-family: "AlAwwal";
-      src: url("Al-AwwalWeb-Regular.woff") format("woff");
-    }
+/* ============ الطباعة ============ */
+.print-only{
+  display:none;
+  font-family:"AlAwwal", Arial, sans-serif;
+  direction:rtl;
+  color:#000;
+  text-align:center;
+}
 
-    :root{
-      --bg:#EAE4CD;
-      --text:#222;
-    }
+.print-logo{
+  width:260px;
+  margin:0 auto 40px;
+  display:block;
+}
 
-    *{
-      box-sizing:border-box;
-    }
+.print-name{
+  font-size:110px;
+  line-height:1.2;
+  word-break:break-word;
+}
 
-    html, body{
-      margin:0;
-      padding:0;
-      width:100%;
-      height:100%;
-      background:var(--bg);
-      font-family:Arial, sans-serif;
-    }
+@media print{
+  body{
+    background:#fff !important;
+  }
 
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+  body *{
+    display:none !important;
+  }
 
-    .wrap{
-      width:1100px;
-      max-width:92%;
-      text-align:center;
-    }
+  .print-only,
+  .print-only *{
+    display:block !important;
+  }
 
-    .logo img{
-      width:820px;
-      max-width:100%;
-      margin:0 auto 22px;
-      display:block;
-    }
+  .print-only{
+    position:fixed;
+    inset:0;
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
 
-    .card{
-      background:var(--bg);
-      border-radius:50px;
-      padding:55px 50px 60px;
-    }
-
-    .input{
-      width:100%;
-      max-width:880px;
-      height:120px;
-      border-radius:26px;
-      border:2px solid rgba(0,0,0,.25);
-      font-size:52px;
-      text-align:center;
-      outline:none;
-      font-family:"AlAwwal", Arial, sans-serif;
-      color:var(--text);
-      background:transparent;
-    }
-
-    .actions{
-      margin-top:35px;
-      display:flex;
-      justify-content:center;
-      gap:30px;
-    }
-
-    .btn{
-      background:#000;
-      color:#fff;
-      border:none;
-      border-radius:22px;
-      padding:22px 55px;
-      font-size:28px;
-      font-weight:800;
-      cursor:pointer;
-    }
-
-    /* ================= الطباعة ================= */
-    .print-only{
-      display:none;
-      text-align:center;
-      font-family:"AlAwwal", Arial, sans-serif;
-      direction:rtl;
-      color:#000;
-    }
-
-    .print-logo{
-      width:260px;
-      margin:0 auto 40px;
-      display:inline-block;
-    }
-
-    .print-name{
-      font-size:120px;
-    }
-
-    @media print{
-      body *{
-        display:none !important;
-      }
-
-      .print-only,
-      .print-only *{
-        display:block !important;
-      }
-
-      .print-only{
-        position:fixed;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        width:100%;
-      }
-
-      @page{
-        margin:0;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="wrap">
-    <div class="logo">
-      <img src="logo.png" alt="Logo">
-    </div>
-
-    <div class="card">
-      <input
-        id="nameInput"
-        class="input"
-        type="text"
-        placeholder="اكتب اسمك"
-      />
-
-      <div class="actions">
-        <button class="btn" onclick="goBack()">رجوع</button>
-        <button class="btn" onclick="doPrint()">طباعة</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- محتوى الطباعة فقط -->
-  <div class="print-only">
-    <img src="logo.png" class="print-logo" alt="Logo">
-    <div id="printText" class="print-name"></div>
-  </div>
-
-  <script>
-    const nameInput = document.getElementById("nameInput");
-    const printText = document.getElementById("printText");
-
-    function goBack(){
-      window.location.href = "index.html";
-    }
-
-    function doPrint(){
-      const val = nameInput.value.trim();
-      if(!val){
-        alert("اكتب الاسم أولاً");
-        return;
-      }
-      printText.textContent = val;
-      window.print();
-    }
-  </script>
-
-</body>
-</html>
+  @page{
+    size:A4;
+    margin:0;
+  }
+}
+</style>

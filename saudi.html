@@ -21,9 +21,7 @@
       --border:rgba(0,0,0,.25);
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{ box-sizing:border-box; }
 
     html, body{
       width:100%;
@@ -31,7 +29,8 @@
       margin:0;
       padding:0;
       background:var(--bg);
-      font-family: Arial, sans-serif;
+      font-family:"Saudi", Arial, sans-serif;
+      color:var(--text);
     }
 
     body{
@@ -40,7 +39,6 @@
       align-items:center;
       justify-content:center;
       padding:40px 16px;
-      color:var(--text);
     }
 
     /* الكرت بنفس لون الصفحة بالضبط */
@@ -116,83 +114,97 @@
       transform:translateY(-1px);
     }
 
-    /* الطباعة: الاسم فقط */
-    @media print{
+    /*------ شاشة الطباعة ------*/
+    @media print {
       body{
         background:#fff !important;
-        padding:0;
+        padding:0 !important;
       }
-      
-.print-logo{
-  width:300px; /* تكبير الشعار */
-  margin-bottom:40px;
-}
-
 
       .card{
-        padding:0;
+        display:none !important; /* نخفي كل شيء على الشاشة */
+      }
+
+      .print-only{
+        display:flex !important;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
         width:100%;
-        max-width:100%;
-        border-radius:0;
+        height:100vh;
+        font-family:"Saudi", Arial, sans-serif;
+        color:#000;
       }
 
-      .logo,
-      .btnRow{
-        display:none !important;
+      .print-logo{
+        width:480px; /* تكبير الشعار */
+        display:block;
+        margin:0 auto 50px;
       }
 
-      .inputWrap{
-        width:100%;
-        max-width:100%;
-        margin:0;
-      }
-
-      #nameInput{
-        border:0 !important;
-        padding:0 !important;
-        font-size:80px !important;
-        color:#000 !important;
-        background:transparent !important;
+      .print-name{
+        font-size:100px;
+        font-weight:600;
       }
 
       @page{
         margin:0;
+        size:A5;
       }
     }
+
+    /* إخفاء قسم الطباعة في الشاشة */
+    .print-only{
+      display:none;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div class="card">
-
+  <div class="card" id="mainCard">
     <div class="logo">
       <img src="logo.png" alt="logo">
     </div>
 
     <div class="inputWrap">
-      <input
-        id="nameInput"
-        type="text"
-        placeholder="اكتب اسمك"
-        autocomplete="off"
-      />
+      <input id="nameInput" type="text" placeholder="اكتب اسمك" autocomplete="off" />
 
       <div class="btnRow">
         <button class="btn" onclick="goBack()">رجوع</button>
-        <button class="btn" onclick="window.print()">طباعة</button>
+        <button class="btn" onclick="doPrint()">طباعة</button>
       </div>
     </div>
+  </div>
 
+  <!-- قسم يظهر فقط عند الطباعة -->
+  <div class="print-only">
+    <img src="logo-print.png" class="print-logo" alt="Heritage Logo" />
+    <div id="printText" class="print-name"></div>
   </div>
 
   <script>
+    const nameInput = document.getElementById("nameInput");
+    const printText = document.getElementById("printText");
+
     function goBack(){
       window.location.href = 'index.html';
     }
 
+    function doPrint(){
+      const name = nameInput.value.trim();
+      if(!name){
+        alert("اكتب الاسم أولاً");
+        return;
+      }
+      printText.textContent = name;
+      window.print();
+    }
+
     window.addEventListener('load', ()=>{
-      document.getElementById('nameInput').focus();
+      nameInput.focus();
     });
   </script>
 

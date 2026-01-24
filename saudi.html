@@ -16,7 +16,7 @@
     }
 
     :root{
-      --bg:#EAE4CD;   /* اللون الموحد */
+      --bg:#EAE4CD;
       --text:#2b241a;
       --border:rgba(0,0,0,.25);
     }
@@ -41,7 +41,6 @@
       padding:40px 16px;
     }
 
-    /* الكرت بنفس لون الصفحة بالضبط */
     .card{
       background:var(--bg);
       width:1100px;
@@ -51,7 +50,6 @@
       text-align:center;
     }
 
-    /* الهيدر */
     .logo{
       margin-bottom:30px;
     }
@@ -114,16 +112,14 @@
       transform:translateY(-1px);
     }
 
-    /*------ شاشة الطباعة ------*/
+    /* ------ للطباعة ------ */
     @media print {
       body{
         background:#fff !important;
         padding:0 !important;
       }
 
-      .card{
-        display:none !important; /* نخفي كل شيء على الشاشة */
-      }
+      .card{ display:none !important; }
 
       .print-only{
         display:flex !important;
@@ -138,7 +134,7 @@
       }
 
       .print-logo{
-        width:480px; /* تكبير الشعار */
+        width:480px;
         display:block;
         margin:0 auto 50px;
       }
@@ -149,15 +145,12 @@
       }
 
       @page{
-        margin:0;
         size:A5;
+        margin:0;
       }
     }
 
-    /* إخفاء قسم الطباعة في الشاشة */
-    .print-only{
-      display:none;
-    }
+    .print-only{ display:none; }
 
   </style>
 </head>
@@ -179,8 +172,8 @@
     </div>
   </div>
 
-  <!-- قسم يظهر فقط عند الطباعة -->
-  <div class="print-only">
+  <!-- قسم يظهر فقط أثناء الطباعة -->
+  <div class="print-only" id="printArea">
     <img src="logo-print.png" class="print-logo" alt="Heritage Logo" />
     <div id="printText" class="print-name"></div>
   </div>
@@ -199,8 +192,13 @@
         alert("اكتب الاسم أولاً");
         return;
       }
+      // نضع الاسم في قسم الطباعة
       printText.textContent = name;
-      window.print();
+
+      // ننتظر قليلاً حتى يُحدث DOM ثم نطبع
+      setTimeout(()=>{
+        window.print();
+      }, 200);
     }
 
     window.addEventListener('load', ()=>{

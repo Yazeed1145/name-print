@@ -8,10 +8,7 @@
   <style>
     @font-face{
       font-family: "AlAwwal";
-      src:
-        url("Al-AwwalWeb-Regular.woff2") format("woff2"),
-        url("Al-AwwalWeb-Regular.woff") format("woff");
-      font-display: swap;
+      src: url("Al-AwwalWeb-Regular.woff") format("woff");
     }
 
     :root{
@@ -89,7 +86,7 @@
       cursor:pointer;
     }
 
-    /* ============ الطباعة ============ */
+    /* ================= الطباعة ================= */
     .print-only{
       display:none;
       text-align:center;
@@ -101,20 +98,14 @@
     .print-logo{
       width:260px;
       margin:0 auto 40px;
-      display:block;
+      display:inline-block;
     }
 
     .print-name{
-      font-size:110px;
-      line-height:1.2;
-      word-break:break-word;
+      font-size:120px;
     }
 
     @media print{
-      body{
-        background:#fff !important;
-      }
-
       body *{
         display:none !important;
       }
@@ -126,15 +117,13 @@
 
       .print-only{
         position:fixed;
-        inset:0;
-        display:flex !important;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:100%;
       }
 
       @page{
-        size:A4;
         margin:0;
       }
     }
@@ -183,12 +172,7 @@
         alert("اكتب الاسم أولاً");
         return;
       }
-
       printText.textContent = val;
-
-      // تصغير تلقائي إذا الاسم طويل
-      printText.style.fontSize = val.length > 12 ? "90px" : "110px";
-
       window.print();
     }
   </script>

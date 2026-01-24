@@ -8,10 +8,7 @@
   <style>
     @font-face{
       font-family: "AlAwwal";
-      src:
-        url("Al-AwwalWeb-Regular.woff2") format("woff2"),
-        url("Al-AwwalWeb-Regular.woff") format("woff");
-      font-display: swap;
+      src: url("Al-AwwalWeb-Regular.woff") format("woff");
     }
 
     :root{
@@ -74,4 +71,111 @@
     .actions{
       margin-top:35px;
       display:flex;
-      justify-content:c
+      justify-content:center;
+      gap:30px;
+    }
+
+    .btn{
+      background:#000;
+      color:#fff;
+      border:none;
+      border-radius:22px;
+      padding:22px 55px;
+      font-size:28px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    /* ================= الطباعة ================= */
+    .print-only{
+      display:none;
+      text-align:center;
+      font-family:"AlAwwal", Arial, sans-serif;
+      direction:rtl;
+      color:#000;
+    }
+
+    .print-logo{
+      width:260px;
+      margin:0 auto 40px;
+      display:inline-block;
+    }
+
+    .print-name{
+      font-size:120px;
+    }
+
+    @media print{
+      body *{
+        display:none !important;
+      }
+
+      .print-only,
+      .print-only *{
+        display:block !important;
+      }
+
+      .print-only{
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:100%;
+      }
+
+      @page{
+        margin:0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="card">
+      <input
+        id="nameInput"
+        class="input"
+        type="text"
+        placeholder="اكتب اسمك"
+      />
+
+      <div class="actions">
+        <button class="btn" onclick="goBack()">رجوع</button>
+        <button class="btn" onclick="doPrint()">طباعة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- محتوى الطباعة فقط -->
+  <div class="print-only">
+    <img src="logo.png" class="print-logo" alt="Logo">
+    <div id="printText" class="print-name"></div>
+  </div>
+
+  <script>
+    const nameInput = document.getElementById("nameInput");
+    const printText = document.getElementById("printText");
+
+    function goBack(){
+      window.location.href = "index.html";
+    }
+
+    function doPrint(){
+      const val = nameInput.value.trim();
+      if(!val){
+        alert("اكتب الاسم أولاً");
+        return;
+      }
+      printText.textContent = val;
+      window.print();
+    }
+  </script>
+
+</body>
+</html>

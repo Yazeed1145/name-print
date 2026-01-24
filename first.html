@@ -41,11 +41,9 @@ body{
   padding:40px 30px;
 }
 
-.logo img 
-  width: 250px;
-  margin-bottom: 30px;
-  display: block;
-  margin-right: auto; /* <-- هذا يضمن تمركزها بالوسط */
+.logo img{
+  width:250px;
+  margin-bottom:30px;
 }
 
 .input{
@@ -96,8 +94,8 @@ body{
 }
 
 .print-logo{
-  width:700px; /* تكبير الشعار */
-  margin-bottom:40px;
+  width:400px; /* <-- كان 200px وتم تكبيره */
+  margin-bottom:40px; /* مساحة إضافية */
 }
 
 .print-name{
@@ -147,8 +145,7 @@ body{
 
 <!-- الطباعة فقط -->
 <div class="print-only">
-  <!-- شعار هيئة التراث أثناء الطباعة -->
-  <img src="logo-print.png" class="print-logo" alt="Logo">
+  <img src="logo.png" class="print-logo" alt="Logo">
   <div id="printText" class="print-name"></div>
 </div>
 
